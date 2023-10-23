@@ -11,6 +11,10 @@ jobs:
     steps:
       - name: Chekout Repository
         uses: actions/checkout@main
+      - name: NodeJS
+        uses: actions/setup-node@main
+        with:
+          node-version: 10.x
       - name: Install dependencies
         run: npm ci
         working-directory: react
@@ -20,8 +24,8 @@ jobs:
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
-          name: dist
-          path: dist
+          name: node-build
+          path: build
   deploy:
     name: Deploy
     needs: build
@@ -32,8 +36,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@main
         with:
-          name: dist
-          path: dist
+          name: node-build
       - name: Sync files to remote server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
