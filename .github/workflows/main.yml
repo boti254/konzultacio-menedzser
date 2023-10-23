@@ -11,12 +11,12 @@ jobs:
     steps:
       - name: Chekout Repository
         uses: actions/checkout@main
-      - name: Changing directory to react
-        run: cd react
       - name: Install dependencies
-        run: npm i
+        run: npm ci
+        working-directory: react
       - name: Build dependencies
         run: npm run build
+        working-directory: react
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
