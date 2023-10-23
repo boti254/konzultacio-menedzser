@@ -27,11 +27,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
-      - name: Download artifact
-        uses: actions/download-artifact@main
-        with:
-          name: dist
-          path: dist
+      #- name: Download artifact
+      #  uses: actions/download-artifact@main
+      #  with:
+         # name: dist
+         # path: dist
       - name: Sync files to remote server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
