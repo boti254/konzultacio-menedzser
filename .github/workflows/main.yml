@@ -30,12 +30,11 @@ jobs:
       #- name: Download artifact
       #  uses: actions/download-artifact@main
       #  with:
-         # name: dist
-         # path: dist
+      # name: dist
+      # path: dist
       - name: Sync files to remote server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
           server: szoftarch.webgravir.hu
           username: github@szoftarch.webgravir.hu
-          password: SzoftarchProject
-    
+          password: ${{ secrets.FTP_PASS }}
