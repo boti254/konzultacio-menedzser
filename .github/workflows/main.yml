@@ -41,7 +41,7 @@ jobs:
         uses: actions/download-artifact@main
         with:
           name: node-build
-          path: .
+          path: ./react
       - name: Sync files to remote server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
