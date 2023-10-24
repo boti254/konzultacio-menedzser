@@ -20,13 +20,12 @@ jobs:
         working-directory: react
       - name: Build dependencies
         run: npm run build
-        working-directory: react
+        working-directory: ./react
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
           name: node-build
-          path: .
-          working-directory: react
+          path: ./react
   deploy:
     name: Deploy
     needs: build
