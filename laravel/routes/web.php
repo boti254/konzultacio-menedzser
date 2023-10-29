@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test/{id}', [TestController::class, "index"]);
+//This route is used for test only, no actual functionality
+Route::get('/api/test/{id}', [TestController::class, "index"]);
