@@ -1,0 +1,20 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} ^/api/(.*)/s$ [NC]
+RewriteRule ^api/(.*)/s$ /laravel/public/$1 [L]
+
+RewriteCond %{REQUEST_URI} ^/api/(.*)$ [NC]
+RewriteRule ^api/(.*)$ /laravel/public/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/(api|react)/
+RewriteRule ^(.*)$ /react/dist/$1 [L]
+
+<Files .editorconfig>
+    order allow,deny
+    Deny from all
+</Files>
+
+<Files .env>
+    order allow,deny
+    Deny from all
+</Files>
