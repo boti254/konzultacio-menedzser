@@ -18,5 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//This route is used for test only, no actual functionality
+//This route is used for test only, no actual functionality.
+//this comment is even a test
 Route::get('/api/test/{id}', [TestController::class, "index"]);
