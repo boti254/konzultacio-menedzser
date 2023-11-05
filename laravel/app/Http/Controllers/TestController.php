@@ -9,6 +9,6 @@ class TestController extends Controller
 {
     public function index($id){
         $test = Test::find($id);
-        echo $test->text;
+        echo json_encode($test);
     }
 }
