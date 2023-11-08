@@ -7,7 +7,7 @@ RewriteCond %{REQUEST_URI} ^/api/(.*)$ [NC]
 RewriteRule ^api/(.*)$ /laravel/public/$1 [L]
 
 RewriteCond %{REQUEST_URI} !^/(api|react)/
-RewriteRule ^(.*)$ /react/dist/$1 [L]
+RewriteRule ^(.*)$ /react/dist/ [L]
 
 <Files .editorconfig>
     order allow,deny
