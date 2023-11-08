@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::get('/', function () {
 
 //This route is used for test only, no actual functionality.
 Route::get('/api/test/{id}', [TestController::class, "index"]);
+
+Route::get('/api/todos', [TodoController::class, "index"]);

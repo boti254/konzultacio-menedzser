@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->text('title');
+            $table->dateTime('due');
+            $table->boolean('done');
             $table->timestamps();
         });
     }
