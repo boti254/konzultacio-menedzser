@@ -1,13 +1,15 @@
 import "./TodoStudentPage.css";
 import { TodoTask } from "../../interfaces/Interfaces";
 import BackButton from "../../components/BackButton/BackButton";
+import { useStudentTodos } from "../../hooks/useStudentTodos";
 
 function TodoStudentPage() {
-  const fakeFeladatok = [
-    { name: "Elso", due: "Valami" },
-    { name: "Masodik", due: "asd" },
-    { name: "Harmadik", due: "asd" },
-  ];
+  const { data, loading } = useStudentTodos(
+    "https://szoftarch.webgravir.hu/api/todos"
+  );
+  const newStyle = {
+    color: "green",
+  };
   return (
     <div className="todo-student-page-container">
       <BackButton linkTo={"/menu"} />
@@ -17,12 +19,20 @@ function TodoStudentPage() {
         </div>
       </div>
       <div className="todo-student-page-body">
-        {fakeFeladatok.map((feladat: TodoTask) => (
-          <div className="task-container">
-            <div className="task-half">{feladat.name}</div>
-            <div className="task-half">{feladat.due}</div>
-          </div>
-        ))}
+        {loading ? (
+          <div>Betoltes</div>
+        ) : (
+          data?.map((feladat: TodoTask) => (
+            <div
+              className="task-container"
+              style={feladat.done ? newStyle : {}}
+              key={feladat.id}
+            >
+              <div className="task-half">{feladat.title}</div>
+              <div className="task-half">{feladat.due}</div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
