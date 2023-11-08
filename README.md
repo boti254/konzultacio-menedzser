@@ -11,3 +11,26 @@ Group project for "Szoftverarchitekturak"
 ## Figma design
 
 [Figma](https://www.figma.com/files/team/1290368291715136509)
+
+## Laravel
+Ha forntendet fejléesztünk ezt nem kell elinditani, mehet az elesrol.
+A backendhez pedig:
+php 8.1.X
+mysql server
+
+backend indítása (laravel mappából futtatva)
+`php artisan serve`
+
+migrációk db-hez:
+`php artisan migrate:fresh --seed`
+
+## React:
+node package manager kell
+
+(react mappából futtatva)
+
+`npm install` a könyvtárak importálására
+
+`npm run build` mindig push elott!
+
+`npm run dev` local dev server inditasa
