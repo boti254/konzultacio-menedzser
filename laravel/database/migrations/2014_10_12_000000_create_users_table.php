@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->boolval('student');
-            $table->boolval('teacher');
-            $table->boolval('admin');
+            $table->boolean('student');
+            $table->boolean('teacher');
+            $table->boolean('admin');
         });
     }
 
