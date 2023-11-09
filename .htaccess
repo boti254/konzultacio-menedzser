@@ -1,5 +1,8 @@
 RewriteEngine on
 
+RewriteCond %{REQUEST_URI} ^/assets/(.*)$ [NC]
+RewriteRule ^assets/(.*)$ /react/dist/assets/$1 [L]
+
 RewriteCond %{REQUEST_URI} ^/api/(.*)/s$ [NC]
 RewriteRule ^api/(.*)/s$ /laravel/public/$1 [L]
 
