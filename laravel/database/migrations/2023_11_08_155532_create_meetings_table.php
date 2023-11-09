@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->dateTime('date');
+            $table->text('location');
+            $table->integer('count');
         });
     }
 

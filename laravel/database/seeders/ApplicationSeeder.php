@@ -4,16 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use App\Models\Application;
 
-class UserSeeder extends Seeder
+class ApplicationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory(2)
-            ->create();
+        Application::factory(1)->create();
     }
 }
