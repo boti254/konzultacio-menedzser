@@ -34,7 +34,6 @@ class LoginController extends Controller
 
             return response()->json([
                 'message' => 'User Logged In Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
         } catch (\Throwable $th) {
