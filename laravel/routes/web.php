@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,16 @@ use App\Http\Controllers\TodoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('/api/login', [LoginController::class, "login"]);
+Route::get('/api/logout', [LoginController::class, "logout"]);
+
+Route::get('/', function () { return view('welcome'); });
 
 //This route is used for test only, no actual functionality.
 Route::get('/api/test/{id}', [TestController::class, "index"]);
 
+
 Route::get('/api/todos', [TodoController::class, "index"]);
+
+
+
