@@ -1,7 +1,9 @@
+import BackButton from "../../components/BackButton/BackButton";
 import "./UserEditPage.css";
 function UserEditPage() {
   return (
     <div className="user-edit-page-container">
+      <BackButton linkTo={"/menu"} />
       <div className="user-input-wrapper">
         <label htmlFor="userName">Név</label>
         <input type="text" id="userName" placeholder="Nev" />
