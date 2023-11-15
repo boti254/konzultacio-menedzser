@@ -62,6 +62,7 @@ class TodoController extends Controller
     public function store(Request $request) {
         $user = User::find(Auth::id());
         if ($user) {
+
             $id = $request->id;
             $student_id = $request->student_id;
             $todo = Todo::find($id);
@@ -75,7 +76,14 @@ class TodoController extends Controller
                     'done' => $request->done,
                 ];
                 if ($id > 0) {
-                    $todo = Todo::find($id)->update($req_array);
+                    if ($todo){
+                        $todo->update($req_array);
+                    }
+                    else{
+                        return response()->json([
+                            'message' => 'Item not found'
+                        ], 400);
+                    }
                 }
                 else {
                     $todo = Todo::create($req_array);
