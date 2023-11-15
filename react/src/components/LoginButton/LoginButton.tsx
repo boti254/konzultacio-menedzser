@@ -6,7 +6,7 @@ interface LoginButtonProps {
 
 function LoginButton({ linkTo }: LoginButtonProps) {
   return (
-    <a href={linkTo} className="header-button">
+    <a href={linkTo} className="login-button">
       Login
     </a>
   );
