@@ -1,0 +1,36 @@
+.user-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 300px;
+}
+
+.user-role-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.user-edit-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.save-btn {
+  padding: 10spx;
+}
+
+.user-role {
+  width: 25%;
+  padding: 5px;
+  color: green;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid gray;
+}
