@@ -44,6 +44,18 @@
   justify-content: center;
 }
 
-.task-half {
-  width: 50%;
+.task-name {
+  width: 40%;
+}
+.task-due {
+  width: 30%;
+}
+.task-done {
+  width: 10%;
+}
+.task-edit {
+  width: 10%;
+}
+.task-delete {
+  width: 10%;
 }

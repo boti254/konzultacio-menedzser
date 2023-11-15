@@ -40,8 +40,11 @@ function TodoTeacherPage() {
       <div className="todo-student-page-body">
         {data?.map((feladat: TodoTask) => (
           <div className="task-container" key={feladat.id}>
-            <div className="task-half">{feladat.title}</div>
-            <div className="task-half">{feladat.due}</div>
+            <div className="task-name">{feladat.title}</div>
+            <div className="task-due">{feladat.due}</div>
+            <button className="task-edit">M</button>
+            <button className="task-done">K</button>
+            <button className="task-delete">T</button>
           </div>
         ))}
       </div>
