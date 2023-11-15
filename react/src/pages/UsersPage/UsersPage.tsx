@@ -10,9 +10,9 @@ function UsersPage() {
       </div>
       {data.map((user) => (
         <div className="user-container" key={user}>
-          <div className="icon-container">I</div>
+          <button className="icon-container">I</button>
           <div className="name-container">{user}</div>
-          <div className="icon-container">M</div>
+          <button className="icon-container">M</button>
         </div>
       ))}
     </div>
