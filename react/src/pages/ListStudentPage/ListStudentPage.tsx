@@ -1,7 +1,44 @@
+import { useState } from "react";
+import "./ListStudentPage.css"
+
+const mockConsultants = [
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Jane Smith' },
+  { id: 3, name: 'Bob Johnson' },
+];
+
 function ListStudentPage() {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [filteredConsultants, setFilteredConsultants] = useState(mockConsultants);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
+
+    const filtered = mockConsultants.filter(consultant =>
+      consultant.name.toLowerCase().includes(term)
+    );
+    setFilteredConsultants(filtered);
+  };
+
   return (
-    <div>
-      <h1>ListStudentPage Works</h1>
+    <div className="consultant-search-container">
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search consultants by name"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
+      <div className="consultant-list">
+        <h2>Consultants</h2>
+        <ul>
+          {filteredConsultants.map(consultant => (
+            <li key={consultant.id}>{consultant.name}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
