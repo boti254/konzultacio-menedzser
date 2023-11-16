@@ -7,14 +7,22 @@ function UsersPage() {
     <div className="users-page-container">
       <BackButton linkTo={"/menu"} />
       <div className="users-input-wrapper">
-        <input type="text" id="searchUser" placeholder="Ide irj nevet" />
-        <button className="search-button">Keresés</button>
+        <label htmlFor="searchUser" className="km-label">
+          Név
+        </label>
+        <input
+          type="text"
+          id="searchUser"
+          className="km-input"
+          placeholder="Ide irj nevet"
+        />
+        <button className="search-button km-button">Keresés</button>
       </div>
       {data.map((user) => (
         <div className="user-container" key={user}>
-          <button className="icon-container">I</button>
+          <div className="icon-container">ICON</div>
           <div className="name-container">{user}</div>
-          <button className="icon-container">M</button>
+          <button className="icon-container km-icon-button-primary">M</button>
         </div>
       ))}
     </div>
