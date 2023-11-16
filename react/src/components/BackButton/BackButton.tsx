@@ -6,7 +6,7 @@ interface BackButtonProps {
 
 function BackButton({ linkTo }: BackButtonProps) {
   return (
-    <a href={linkTo} className="header-button">
+    <a href={linkTo} className="header-button km-button">
       Vissza
     </a>
   );
