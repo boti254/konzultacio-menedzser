@@ -31,7 +31,7 @@
 }
 
 .todo-student-page-body {
-  background-color: gray;
+  background-color: var(--border-color);
   width: 300px;
   padding: 10px;
   border-radius: 20px;

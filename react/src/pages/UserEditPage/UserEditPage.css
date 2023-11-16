@@ -30,8 +30,8 @@
 .user-role {
   width: 25%;
   padding: 5px;
-  color: green;
+  color: var(--primary-color);
   border-radius: 10px;
   text-align: center;
-  border: 1px solid gray;
+  border: 1px solid var(--border-color);
 }
