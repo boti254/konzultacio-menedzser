@@ -1,0 +1,15 @@
+:root {
+  --primary-color: #42db34;
+  --background-color: rgb(255, 255, 255);
+  --km-white: var(--km-white);
+}
+
+.km-button {
+  padding: 10px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--km-white);
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}

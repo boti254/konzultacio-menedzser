@@ -58,7 +58,7 @@ function TodoTeacherPage() {
           <input type="date" id="taskDue" placeholder="Elkeszitesi Hatarido" />
         </div>
 
-        <button>Felvétel</button>
+        <button className="km-button">Felvétel</button>
       </div>
     </div>
   );
