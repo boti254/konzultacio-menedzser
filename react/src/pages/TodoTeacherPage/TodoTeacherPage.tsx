@@ -82,11 +82,28 @@ function TodoTeacherPage() {
             >
               <div className="task-name">{feladat.title}</div>
               <div className="task-due">{feladat.due}</div>
-              <button className="task-edit km-icon-button-primary">M</button>
+              <button
+                className="task-edit km-icon-button-primary"
+                onClick={() => {
+                  handleUpdate(
+                    feladat.id,
+                    Number(feladat.done),
+                    taskName,
+                    dueDate
+                  );
+                }}
+              >
+                M
+              </button>
               <button
                 className="task-done km-icon-button-success"
                 onClick={() => {
-                  handleUpdate(feladat.id, 1, feladat.title, feladat.due);
+                  handleUpdate(
+                    feladat.id,
+                    Number(!feladat.done),
+                    feladat.title,
+                    feladat.due
+                  );
                 }}
               >
                 K
