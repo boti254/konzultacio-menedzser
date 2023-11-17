@@ -29,6 +29,7 @@ Route::get('/api/test/{id}', [TestController::class, "index"]);
 Route::middleware([JwtAuthMiddleware::class])->group(function () {
     //todos
     Route::get('/api/todos', [TodoController::class, "index"]);
+    Route::get('/api/alltodos', [TodoController::class, "getAll"]);
     Route::get('/api/todos/student/{student_id}', [TodoController::class, "getAllByUserId"]);
     Route::get('/api/todos/get/{id}', [TodoController::class, "getById"]);
     Route::post('/api/todos/store/{id}', [TodoController::class, "store"]);

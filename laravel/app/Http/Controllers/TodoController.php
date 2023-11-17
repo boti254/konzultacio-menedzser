@@ -13,7 +13,22 @@ class TodoController extends Controller
     public function index(Request $request) {
         $user = User::find($request->uid);
         if ($user) {
-            return Todo::all();
+            return Todo::where('student_id', $user->id)->get();
+        }
+        return response()->json([
+            'message' => 'Please log in'
+        ], 403);
+    }
+
+    public function getAll(Request $request) {
+        $user = User::find($request->uid);
+        if ($user) {
+            if($user->admin){
+                return Todo::all();
+            }
+            return response()->json([
+                'message' => 'Unauthorised'
+            ], 401);
         }
         return response()->json([
             'message' => 'Please log in'
@@ -54,7 +69,7 @@ class TodoController extends Controller
         }
         return response()->json([
             'message' => 'Unauthorised'
-        ], 403);
+        ], 401);
     }
 
 
