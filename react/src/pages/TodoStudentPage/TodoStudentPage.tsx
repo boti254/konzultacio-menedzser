@@ -1,12 +1,16 @@
 import "./TodoStudentPage.css";
 import { TodoTask } from "../../interfaces/Interfaces";
 import BackButton from "../../components/BackButton/BackButton";
-import { useStudentTodos } from "../../hooks/useStudentTodos";
+import { useTodos } from "../../hooks/useTodos";
+import { useEffect } from "react";
 
 function TodoStudentPage() {
-  const { data, loading } = useStudentTodos(
-    "https://szoftarch.webgravir.hu/api/todos"
-  );
+  const { data, loading, fetchData } = useTodos();
+
+  useEffect(() => {
+    fetchData("https://szoftarch.webgravir.hu/api/todos");
+  }, []);
+
   const newStyle = {
     color: "green",
   };
@@ -20,7 +24,7 @@ function TodoStudentPage() {
       </div>
       <div className="todo-student-page-body">
         {loading ? (
-          <div>Betoltes</div>
+          <div>Betöltés...</div>
         ) : (
           data?.map((feladat: TodoTask) => (
             <div
