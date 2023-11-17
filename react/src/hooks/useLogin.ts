@@ -22,7 +22,7 @@ export const useLogin = (email: string, password: string) => {
       if (result.status == 200) {
         localStorage.setItem("token", loginResponse.token);
         setLoggedIn(true);
-        navigate("todo-student");
+        navigate("/menu");
       } else {
         alert(loginResponse.message);
       }
