@@ -5,6 +5,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PairController;
 use App\Http\Middleware\JwtAuthMiddleware;
 
 /*
@@ -21,9 +22,6 @@ use App\Http\Middleware\JwtAuthMiddleware;
 Route::post('/api/login', [LoginController::class, "login"]);
 Route::get('/api/logout', [LoginController::class, "logout"]);
 
-Route::get('/', function () { return view('welcome'); });
-
-//This route is used for test only, no actual functionality.
 Route::get('/api/test/{id}', [TestController::class, "index"]);
 
 Route::middleware([JwtAuthMiddleware::class])->group(function () {
@@ -42,6 +40,15 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
     Route::post('/api/users/store/{id}', [UserController::class, "store"]);
     Route::post('/api/users/update-own', [UserController::class, "updateOwnProfile"]);
     Route::delete('/api/users/delete/{id}', [UserController::class, "delete"]);
+
+    //pairs
+    Route::get('/api/allpairs', [PairController::class, "index"]);
+    Route::get('/api/pairs/my-pairs', [PairController::class, "myPairs"]);
+    Route::get('/api/pairs/my-students', [PairController::class, "myStudents"]);
+    Route::get('/api/pairs/my-teachers', [PairController::class, "myTeachers"]);
+    Route::post('/api/pairs/apply-to-teacher/{t_id}', [PairController::class, "applyToTeacher"]);
+    Route::patch('/api/pairs/accept-student/{s_id}', [PairController::class, "acceptStudent"]);
+    Route::delete('/api/pairs/delete/{id}', [PairController::class, "delete"]);
 });
 
 
