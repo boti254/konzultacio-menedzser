@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
-    public function index() {
-        $user = User::find(Auth::id());
+    public function index(Request $request) {
+        $user = User::find($request->uid);
         if ($user) {
             return Todo::all();
         }
@@ -20,8 +20,8 @@ class TodoController extends Controller
         ], 403);
     }
 
-    public function getById($id) {
-        $user = User::find(Auth::id());
+    public function getById($id, Request $request) {
+        $user = User::find($request->uid);
         if ($user) {
             $todo = Todo::find($id);
             if (!$todo){
@@ -41,8 +41,8 @@ class TodoController extends Controller
         ], 403);
     }
 
-    public function getAllByUserId($student_id) {
-        $user = User::find(Auth::id());
+    public function getAllByUserId($student_id, Request $request) {
+        $user = User::find($request->uid);
 
         // if user logged in and either a student who wnats to get their own todos or a teacher getting their students todos or user is admin
         if ($user &&
@@ -60,7 +60,7 @@ class TodoController extends Controller
 
 
     public function store(Request $request) {
-        $user = User::find(Auth::id());
+        $user = User::find($request->uid);
         if ($user) {
 
             $id = $request->id;
@@ -109,8 +109,8 @@ class TodoController extends Controller
 
 
 
-    public function delete($id) {
-        $user = User::find(Auth::id());
+    public function delete($id, Request $request) {
+        $user = User::find($request->uid);
         $todo = Todo::find($id);
         if (!$todo){
             return response()->json([

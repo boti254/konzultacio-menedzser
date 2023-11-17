@@ -29,7 +29,7 @@ function ChatPage() {
     if (newMessage.trim() !== '') {
       const newMessageObj = {
         content: newMessage,
-        sender: userType,
+        sender: "",
         timestamp: new Date().toLocaleTimeString(),
       };
 
