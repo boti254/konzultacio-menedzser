@@ -31,7 +31,10 @@ function TodoTeacherPage() {
           <h1>TODO</h1>
         </div>
         <div className="todo-teacher-select-container">
-          <select name="studentSelect" id="studentSelect">
+          <label htmlFor="taskName" className="km-label">
+            Válassz diákot
+          </label>
+          <select name="studentSelect" id="studentSelect" className="km-select">
             <option value="ABC123">Pelda Bela</option>
             <option value="XYZ987">Janos Fanos</option>
           </select>

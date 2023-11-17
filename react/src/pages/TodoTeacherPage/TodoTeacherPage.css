@@ -20,6 +20,13 @@
   align-items: center;
 }
 
+.todo-teacher-select-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .todo-teacher-page-header {
   width: 100%;
   display: flex;
