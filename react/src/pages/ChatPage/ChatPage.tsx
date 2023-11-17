@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ChatPage.css";
 
-function ChatPage() {
+function ChatPage() { 
   const [newMessage, setNewMessage] = useState<string>("");
 
   return (

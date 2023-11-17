@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index() {
-        $user = User::find(Auth::id());
+    public function index(Request $request) {
+        $user = User::find($request->uid);
         if ($user && $user->admin) {
             return User::all();
         }
@@ -19,8 +19,8 @@ class UserController extends Controller
         ], 403);
     }
 
-    public function search($expr) {
-        $user = User::find(Auth::id());
+    public function search($expr, Request $request) {
+        $user = User::find($request->uid);
         if ($user && $user->admin) {
             return User::where('name', 'LIKE', '%'.$expr.'%')->get();
         }
@@ -29,9 +29,9 @@ class UserController extends Controller
         ], 403);
     }
 
-    public function getById($id) {
-        $user = User::find(Auth::id());
-        if ($user && ($user->admin || $id == Auth::id())) {
+    public function getById($id, Request $request) {
+        $user = User::find($request->uid);
+        if ($user && ($user->admin || $id == $request->uid)) {
             $user_to_find = User::find($id);
             if ($user_to_find) {
                 return $user_to_find;
@@ -46,7 +46,7 @@ class UserController extends Controller
     }
 
     public function updateOwnProfile(Request $request) {
-        $user = User::find(Auth::id());
+        $user = User::find($request->uid);
         if ($user) {
             $req_array = [
                 'name' => $user->name,
@@ -67,7 +67,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-        $user = User::find(Auth::id());
+        $user = User::find($request->uid);
         if ($user && $user->admin) {
             $new_user = null;
             $req_array = [
@@ -84,7 +84,7 @@ class UserController extends Controller
                 $new_user = User::create($req_array);
             }
             else {
-                if ($request->id != Auth::id()){
+                if ($request->id != $request->uid){
                     $user_to_mod = User::find($request->id);
                     if ($user_to_mod){
                         $user_to_mod->update($req_array);
@@ -110,9 +110,9 @@ class UserController extends Controller
         ], 403);
     }
 
-    public function delete($id) {
-        $user = User::find(Auth::id());
-        if ($user && $user->admin && $id != Auth::id()) {
+    public function delete($id, Request $request) {
+        $user = User::find($request->uid);
+        if ($user && $user->admin && $id != $request->uid) {
             $user_to_delete = User::find($id);
             if ($user_to_delete) {
                 $user_to_delete->delete();

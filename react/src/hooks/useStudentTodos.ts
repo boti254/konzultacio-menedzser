@@ -11,7 +11,11 @@ export function useStudentTodos(initialUrl: string) {
     setError(null);
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          'authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+      });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
