@@ -42,23 +42,37 @@ function TodoTeacherPage() {
           <div className="task-container" key={feladat.id}>
             <div className="task-name">{feladat.title}</div>
             <div className="task-due">{feladat.due}</div>
-            <button className="task-edit">M</button>
-            <button className="task-done">K</button>
-            <button className="task-delete">T</button>
+            <button className="task-edit km-icon-button-primary">M</button>
+            <button className="task-done km-icon-button-success">K</button>
+            <button className="task-delete km-icon-button-error">T</button>
           </div>
         ))}
       </div>
       <div className="todo-input-container">
         <div className="todo-input-wrapper">
-          <label htmlFor="taskName">Feladat Neve</label>
-          <input type="text" id="taskName" placeholder="Feladat Neve" />
+          <label htmlFor="taskName" className="km-label">
+            Feladat Neve
+          </label>
+          <input
+            type="text"
+            id="taskName"
+            className="km-input"
+            placeholder="Feladat Neve"
+          />
         </div>
         <div className="todo-input-wrapper">
-          <label htmlFor="taskDue">Elkészítési Határidő</label>
-          <input type="date" id="taskDue" placeholder="Elkeszitesi Hatarido" />
+          <label htmlFor="taskDue" className="km-label">
+            Elkészítési Határidő
+          </label>
+          <input
+            type="date"
+            id="taskDue"
+            className="km-input"
+            placeholder="Elkeszitesi Hatarido"
+          />
         </div>
 
-        <button>Felvétel</button>
+        <button className="km-button">Felvétel</button>
       </div>
     </div>
   );

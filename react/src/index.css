@@ -1,0 +1,108 @@
+:root {
+  --primary-color: #42db34;
+  --primary-light: #d6f5d3fd;
+  --onprimary-color: rgb(16, 104, 8);
+  --background-color: rgb(255, 255, 255);
+  --km-white: white;
+  --error-color: rgb(209, 29, 29);
+  --onerror-color: rgb(128, 3, 3);
+  --error-light: rgb(228, 176, 176);
+  --success-color: rgb(0, 255, 213);
+  --onsuccess-color: rgb(0, 119, 255);
+  --success-light: rgb(159, 207, 199);
+  --font-color: black;
+  --border-color: #79747e;
+}
+
+/* buttons */
+
+.km-button {
+  padding: 10px 24px;
+  color: var(--km-white);
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  border: 0;
+}
+
+a.km-button {
+  text-decoration: none;
+}
+
+.km-button:hover {
+  background-color: var(--onprimary-color);
+  transition: background-color 0.2s;
+}
+
+.km-button-error {
+  padding: 10px 24px;
+  color: var(--km-white);
+  background-color: var(--error-color);
+  border-radius: 10px;
+  border: 0;
+}
+
+.km-button-error:hover {
+  background-color: var(--onerror-color);
+  transition: background-color 0.2s;
+}
+
+.km-icon-button-primary {
+  padding: 5px;
+  background-color: var(--primary-light);
+  border-radius: 5px;
+  color: var(--onprimary-color);
+  border: 1px solid var(--onprimary-color);
+}
+.km-icon-button-primary:hover {
+  background-color: var(--primary-color);
+  transition: background-color 0.2s;
+}
+
+.km-icon-button-success {
+  padding: 5px;
+  background-color: var(--success-light);
+  border-radius: 5px;
+  color: var(--onsuccess-color);
+  border: 1px solid var(--border-color);
+}
+.km-icon-button-success:hover {
+  background-color: var(--success-color);
+  transition: background-color 0.2s;
+}
+
+.km-icon-button-error {
+  padding: 5px;
+  background-color: var(--error-light);
+  border-radius: 5px;
+  color: var(--onerror-color);
+  border: 1px solid var(--border-color);
+}
+.km-icon-button-error:hover {
+  background-color: var(--error-color);
+  transition: background-color 0.2s;
+}
+
+/* labels */
+
+.km-label {
+  padding: 5px 20px;
+  margin-bottom: 5px;
+  max-width: fit-content;
+  text-align: start;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  border-radius: 8px;
+  background: rgba(43, 197, 18, 0.11);
+}
+
+/* inputs */
+
+.km-input {
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  padding: 8px 10px;
+}

@@ -4,9 +4,9 @@ import "./LoginPage.css"
 //import { useLogin } from "../../hooks/useLogin";
 
 function LoginPage() {
-    const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,20 +47,25 @@ function LoginPage() {
                     required
                 />
 
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
+        <label htmlFor="password" className="login-label">
+          Password:
+        </label>
+        <input
+          className="login-input"
+          type="password"
+          id="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    );
+        <button className="login-button" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default LoginPage;
