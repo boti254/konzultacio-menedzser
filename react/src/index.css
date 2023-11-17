@@ -33,6 +33,19 @@ a.km-button {
   transition: background-color 0.2s;
 }
 
+.km-button-error {
+  padding: 10px 24px;
+  color: var(--km-white);
+  background-color: var(--error-color);
+  border-radius: 10px;
+  border: 0;
+}
+
+.km-button-error:hover {
+  background-color: var(--onerror-color);
+  transition: background-color 0.2s;
+}
+
 .km-icon-button-primary {
   padding: 5px;
   background-color: var(--primary-light);
@@ -42,6 +55,7 @@ a.km-button {
 }
 .km-icon-button-primary:hover {
   background-color: var(--primary-color);
+  transition: background-color 0.2s;
 }
 
 .km-icon-button-success {
@@ -53,6 +67,7 @@ a.km-button {
 }
 .km-icon-button-success:hover {
   background-color: var(--success-color);
+  transition: background-color 0.2s;
 }
 
 .km-icon-button-error {
@@ -64,6 +79,7 @@ a.km-button {
 }
 .km-icon-button-error:hover {
   background-color: var(--error-color);
+  transition: background-color 0.2s;
 }
 
 /* labels */
