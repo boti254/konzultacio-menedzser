@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ListStudentPage.css"
+import BackButton from "../../components/BackButton/BackButton";
 
 const mockConsultants = [
   { id: 1, name: 'John Doe' },
@@ -23,16 +24,20 @@ function ListStudentPage() {
 
   return (
     <div className="consultant-search-container">
-      <div className="search-bar">
+      <BackButton linkTo={"/menu"} />
+      <label className="km-label default-margin">
+        Konzulensek listája
+      </label>
+      <div className="default-margin">
         <input
           type="text"
-          placeholder="Search consultants by name"
+          placeholder="Konzulens keresése"
           value={searchTerm}
           onChange={handleSearch}
         />
       </div>
       <div className="consultant-list">
-        <h2>Consultants</h2>
+        <h2>Konzulensek</h2>
         <ul>
           {filteredConsultants.map(consultant => (
             <li key={consultant.id}>{consultant.name}</li>
