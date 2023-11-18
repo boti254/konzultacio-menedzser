@@ -1,11 +1,11 @@
-.student-search-container {
+.consultant-search-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
 }
 
-.student-list {
+.consultant-list {
   text-align: center;
 }
 
