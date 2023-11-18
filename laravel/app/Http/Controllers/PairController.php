@@ -27,7 +27,7 @@ class PairController extends Controller
         $user = User::find($request->uid);
         $my_pairs = [];
         if ($user) {
-            $pairs = Pair::where('teacher_id', $user->id)->orWhere('teacher_id', $user->id)->get();
+            $pairs = Pair::where('teacher_id', $user->id)->orWhere('student_id', $user->id)->get();
             foreach ($pairs as $pair){
                 if ($pair->teacher_id == $user->id){
                     $my_pairs[] = [
