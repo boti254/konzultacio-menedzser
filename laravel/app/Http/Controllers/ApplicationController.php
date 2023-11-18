@@ -25,26 +25,28 @@ class ApplicationController extends Controller
         ], 403);
     }
 
+    public function myApplications(Request $request) {
+        $user = User::find($request->uid);
+        if ($user) {
+            return Application::where('student_id', $user->id)->get();
+        }
+        return response()->json([
+            'message' => 'Please log in'
+        ], 403);
+    }
+
     public function apllicationsToMeeting($id, Request $request) {
         $user = User::find($request->uid);
         if ($user) {
             $meeting = Meeting::find($id);
             if ($meeting){
-                if ($user->teacher) {
-                    if ($user->id == $meeting->teacher_id){
-                        return Application::where('meeting_id', $id)->get();
-                    }
-                    return response()->json([
-                        'message' => 'This meeting does not belong to you'
-                    ], 401);
-                }
-                else if ($user->student) {
+                if ($user->student || $user->teacher) {
                     $pair = Pair::where('student_id', $user->id)->where('teacher_id', $meeting->teacher_id)->first();
-                    if ($pair) {
+                    if ($pair || $user->id == $meeting->teacher_id) {
                         return Application::where('meeting_id', $id)->get();
                     }
                     return response()->json([
-                        'message' => 'You are not a student of this teacher'
+                        'message' => 'You are not a student of this teacher and this meeting is not yours'
                     ], 401);
                 }
                 else {

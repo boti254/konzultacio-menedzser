@@ -54,18 +54,18 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
 
     //meetings
     Route::get('/api/allmeetings', [MeetingController::class, "index"]);
-    Route::get('/api/meetings/my-meetings/{all}', [MeetingController::class, "myMeetings"]);
     Route::get('/api/meetings/my-meetings/teacher/{all}', [MeetingController::class, "myMeetingsTeacher"]);
-    Route::get('/api/meetings/my-meetings/student/{all}', [MeetingController::class, "myMeetingsStudents"]);
+    Route::get('/api/meetings/my-meetings/student/{all}', [MeetingController::class, "myMeetingsStudent"]);
     Route::get('/api/meetings/meeting/{id}', [MeetingController::class, "getById"]);
     Route::post('/api/meetings/store/{id}', [MeetingController::class, "store"]);
     Route::delete('/api/meetings/delete/{id}', [MeetingController::class, "delete"]);
 
     //applications
     Route::get('/api/allapplications', [ApplicationController::class, "index"]);
+    Route::get('/api/applications', [ApplicationController::class, "myApplications"]);
     Route::get('/api/applications/meeting/{id}', [ApplicationController::class, "apllicationsToMeeting"]);
-    Route::get('/api/applications/apply-to/{id}', [ApplicationController::class, "applyToMeeting"]);
-    Route::get('/api/applications/accept-application/{id}', [ApplicationController::class, "acceptApplication"]);
+    Route::post('/api/applications/apply-to/{id}', [ApplicationController::class, "applyToMeeting"]);
+    Route::patch('/api/applications/accept/{id}', [ApplicationController::class, "acceptApplication"]);
     Route::delete('/api/applications/delete/{id}', [ApplicationController::class, "delete"]);
 });
 

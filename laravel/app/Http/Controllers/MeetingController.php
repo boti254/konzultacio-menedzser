@@ -6,6 +6,8 @@ use App\Models\Meeting;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApplicationController;
+use App\Models\Pair;
 
 class MeetingController extends Controller
 {
@@ -18,19 +20,6 @@ class MeetingController extends Controller
             return response()->json([
                 'message' => 'Unauthorised'
             ], 401);
-        }
-        return response()->json([
-            'message' => 'Please log in'
-        ], 403);
-    }
-
-    public function myMeetings($all, Request $request){
-        return response()->json([
-            'message' => 'Needs ApplicationController implementation'
-        ], 404);
-        $user = User::find($request->uid);
-        if ($user) {
-
         }
         return response()->json([
             'message' => 'Please log in'
@@ -61,13 +50,27 @@ class MeetingController extends Controller
     }
 
     public function myMeetingsStudent($all, Request $request){
-        return response()->json([
-            'message' => 'Needs ApplicationController implementation'
-        ], 404);
-
         $user = User::find($request->uid);
         if ($user) {
-
+            if ($user->student){
+                $applications = (new ApplicationController)->myApplications($request);
+                $meetings = [];
+                foreach ($applications as $application){
+                    $meeting = Meeting::find($application->meeting_id);
+                    if ($all) {
+                        $meetings[] = $meeting;
+                    }
+                    else {
+                        if ($meeting->date <= Carbon::now()){
+                            $meetings[] = $meeting;
+                        }
+                    }
+                }
+                return $meetings;
+            }
+            return response()->json([
+                'message' => 'You are not a student'
+            ], 400);
         }
         return response()->json([
             'message' => 'Please log in'
@@ -75,13 +78,28 @@ class MeetingController extends Controller
     }
 
     public function getById($id, Request $request) {
-        return response()->json([
-            'message' => 'Needs ApplicationController implementation'
-        ], 404);
-
         $user = User::find($request->uid);
         if ($user) {
-
+            $meeting = Meeting::find($id);
+            if ($meeting){
+                if ($user->student || $user->teacher) {
+                    $pair = Pair::where('student_id', $user->id)->where('teacher_id', $meeting->teacher_id)->first();
+                    if ($pair || $user->id == $meeting->teacher_id) {
+                        return $meeting;
+                    }
+                    return response()->json([
+                        'message' => 'You are not a student of this teacher and this meeting is not yours'
+                    ], 401);
+                }
+                else {
+                    return response()->json([
+                        'message' => 'You are not a student or a teacher'
+                    ], 400);
+                }
+            }
+            return response()->json([
+                'message' => 'Meeting not found'
+            ], 404);
         }
         return response()->json([
             'message' => 'Please log in'
