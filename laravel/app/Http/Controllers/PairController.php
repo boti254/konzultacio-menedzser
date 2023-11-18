@@ -104,7 +104,11 @@ class PairController extends Controller
             }
 
             if ($user->student) {
-
+                if ($user->id == $t_id){
+                    return response()->json([
+                        'message' => 'Cannot apply to yourself'
+                    ], 400);
+                }
                 $pair = Pair::where('student_id', $user->id)->where('teacher_id', $t_id)->first();
                 if ($pair) {
                     return response()->json([
