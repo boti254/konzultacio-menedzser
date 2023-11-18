@@ -12,9 +12,6 @@ function MenuPage() {
       <a className="km-button" href="/chat-contacts">
         Chat Kontaktok
       </a>
-      <a className="km-button" href="/chat">
-        Chat
-      </a>
       <a className="km-button" href="users">
         Felhasználók
       </a>

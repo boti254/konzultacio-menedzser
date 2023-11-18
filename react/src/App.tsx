@@ -28,7 +28,7 @@ function App() {
           <Route path="users" element={<UsersPage />} />
           <Route path="list-teacher" element={<ListTeacherPage />} />
           <Route path="list-student" element={<ListStudentPage />} />
-          <Route path="chat" element={<ChatPage />} />
+          <Route path="chat/:id" element={<ChatPage />} />
           <Route path="chat-contacts" element={<ChatContactsPage />} />
           <Route
             path="appointment-edit-list"
