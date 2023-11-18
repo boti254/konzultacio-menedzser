@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PairController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Middleware\JwtAuthMiddleware;
 
 /*
@@ -60,7 +61,12 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
     Route::post('/api/meetings/store/{id}', [MeetingController::class, "store"]);
     Route::delete('/api/meetings/delete/{id}', [MeetingController::class, "delete"]);
 
-
+    //applications
+    Route::get('/api/allapplications', [ApplicationController::class, "index"]);
+    Route::get('/api/applications/meeting/{id}', [ApplicationController::class, "apllicationsToMeeting"]);
+    Route::get('/api/applications/apply-to/{id}', [ApplicationController::class, "applyToMeeting"]);
+    Route::get('/api/applications/accept-application/{id}', [ApplicationController::class, "acceptApplication"]);
+    Route::delete('/api/applications/delete/{id}', [ApplicationController::class, "delete"]);
 });
 
 
