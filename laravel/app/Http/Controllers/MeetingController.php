@@ -24,7 +24,10 @@ class MeetingController extends Controller
         ], 403);
     }
 
-    public function myMeetings($all = 0, Request $request){
+    public function myMeetings($all, Request $request){
+        return response()->json([
+            'message' => 'Needs ApplicationController implementation'
+        ], 404);
         $user = User::find($request->uid);
         if ($user) {
 
@@ -57,7 +60,7 @@ class MeetingController extends Controller
         ], 403);
     }
 
-    public function myMeetingsStudent($all = 0, Request $request){
+    public function myMeetingsStudent($all, Request $request){
         return response()->json([
             'message' => 'Needs ApplicationController implementation'
         ], 404);
