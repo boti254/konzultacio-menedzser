@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { User } from "../interfaces/Interfaces";
 import { useNavigate } from "react-router-dom";
 
-export function useUsers() {
-  const [data, setData] = useState<User[]>();
+export function useUser() {
+  const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
   const navigate = useNavigate();
 
-  const fetchUsers = async (url: string) => {
+  const fetchUser = async (url: string) => {
     setLoading(true);
     setError(null);
 
@@ -22,8 +22,8 @@ export function useUsers() {
       if (response.status !== 200) {
         navigate("/");
       }
-      const result: User[] = await response.json();
-      setData(result);
+      const result: User = await response.json();
+      setUser(result);
     } catch {
       setError(null);
     } finally {
@@ -32,14 +32,13 @@ export function useUsers() {
   };
 
   useEffect(() => {
-    setData(data);
-  }, [data]);
+    setUser(user);
+  }, [user]);
 
   return {
-    setData,
-    data,
     loading,
     error,
-    fetchUsers,
+    user,
+    fetchUser,
   };
 }

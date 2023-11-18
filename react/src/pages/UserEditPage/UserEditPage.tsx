@@ -1,13 +1,15 @@
-import { useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UserEditPage.css";
+import { useUser } from "../../hooks/useUser";
+import { useEffect, useState } from "react";
+import { User } from "../../interfaces/Interfaces";
+import { useParams } from "react-router-dom";
 
 interface CheckboxState {
   student: boolean;
   teacher: boolean;
   admin: boolean;
 }
-
 function UserEditPage() {
   const [checkedState, setCheckedState] = useState<CheckboxState>({
     student: false,
@@ -22,6 +24,18 @@ function UserEditPage() {
     }));
   };
 
+  const { id } = useParams();
+  const [userState, setUserState] = useState<User>();
+  const { fetchUser, user } = useUser();
+
+  useEffect(() => {
+    fetchUser(`https://szoftarch.webgravir.hu/api/users/get/${id}`);
+  }, []);
+
+  useEffect(() => {
+    setUserState(user);
+  }, [user]);
+
   return (
     <div className="user-edit-page-container">
       <BackButton linkTo={"/menu"} />
@@ -34,6 +48,7 @@ function UserEditPage() {
           id="userName"
           className="km-input"
           placeholder="Nev"
+          value={userState?.name}
         />
       </div>
       <div className="user-input-wrapper">
@@ -45,6 +60,7 @@ function UserEditPage() {
           id="userEmail"
           className="km-input"
           placeholder="Email"
+          value={userState?.email}
         />
       </div>
       <div className="user-input-wrapper">
@@ -56,6 +72,7 @@ function UserEditPage() {
           id="userNeptun"
           className="km-input"
           placeholder="Neptun"
+          value={userState?.neptun}
         />
       </div>
       <div className="user-input-wrapper">

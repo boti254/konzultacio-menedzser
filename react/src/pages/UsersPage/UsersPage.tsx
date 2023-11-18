@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UsersPage.css";
-import { useUser } from "../../hooks/useUsers";
+import { useUsers } from "../../hooks/useUsers";
 
 function UsersPage() {
-  const { data, loading, fetchUsers } = useUser();
+  const { data, loading, fetchUsers } = useUsers();
   useEffect(() => {
     fetchUsers("https://szoftarch.webgravir.hu/api/users");
   }, []);
