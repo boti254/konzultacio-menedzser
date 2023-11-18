@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import './ChatContactPage.css';
 import BackButton from "../../components/BackButton/BackButton";
-
-const mockContacts = [
-  { id: 1, name: 'Alice', userType: 'student' },
-  { id: 2, name: 'Bob', userType: 'consultant' },
-  // Add more contacts as needed
-];
+import { usePairs } from "../../hooks/usePairs";
 
 function ChatContactsPage() {
+  const { data, loading, fetchStudents } = usePairs();
+  useEffect(() => {
+    fetchStudents("https://szoftarch.webgravir.hu/api/pairs/my-pairs");
+  }, []);
+
   const [selectedContact, setSelectedContact] = useState<any | null>(null);
 
   const handleContactSelect = (contact: any) => {
@@ -21,15 +21,17 @@ function ChatContactsPage() {
       <BackButton linkTo={"/menu"} />
       <h2>Kontaktok</h2>
       <ul className="contact-list">
-        {mockContacts.map((contact) => (
-          <li key={contact.id} onClick={() => handleContactSelect(contact)}>
-            {contact.name} ({contact.userType})
-          </li>
-        ))}
+        {loading
+            ? "Betöltés..."
+            : data?.map((contact) => (
+              <li key={contact.user.id} onClick={() => handleContactSelect(contact)}>
+                {contact.user.name} ({contact.user.neptun})
+              </li>
+          ))}
       </ul>
       {selectedContact && (
-        <Link to={`/chat/${selectedContact.id}`} className="km-button">
-          Chat indítása vele: {selectedContact.name}
+        <Link to={`/chat/${selectedContact.user.id}`} className="km-button">
+          Chat indítása vele: {selectedContact.user.name} ({selectedContact.user.neptun})
         </Link>
       )}
     </div>
