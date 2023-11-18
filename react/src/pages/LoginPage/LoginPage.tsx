@@ -16,12 +16,12 @@ function LoginPage() {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="email" className="login-label">
+        <label htmlFor="email" className="km-label login-element-margin">
           Email:
         </label>
         <input
           autoComplete="email"
-          className="login-input"
+          className="km-input login-element-margin"
           type="email"
           id="email"
           name="email"
@@ -30,11 +30,11 @@ function LoginPage() {
           required
         />
 
-        <label htmlFor="password" className="login-label">
-          Password:
+        <label htmlFor="password" className="km-label login-element-margin">
+          Jelszó:
         </label>
         <input
-          className="login-input"
+          className="km-input login-element-margin"
           type="password"
           id="password"
           name="password"
@@ -43,8 +43,8 @@ function LoginPage() {
           required
         />
 
-        <button className="login-button" type="submit">
-          Login
+        <button className="km-button login-element-margin" type="submit">
+          Bejelentkezés
         </button>
       </form>
     </div>
