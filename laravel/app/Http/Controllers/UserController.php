@@ -32,7 +32,7 @@ class UserController extends Controller
     public function getAllTeachers(Request $request) {
         $user = User::find($request->uid);
         if ($user) {
-            return User::where('teacher', true)->get();
+            return User::where('teacher', true)->where('id', '!=', $user->id)->get();
         }
         return response()->json([
             'message' => 'Unauthorised'
