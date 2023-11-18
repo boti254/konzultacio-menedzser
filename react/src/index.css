@@ -57,6 +57,12 @@ a.km-button-error {
   color: var(--onprimary-color);
   border: 1px solid var(--onprimary-color);
 }
+
+a.km-icon-button-primary {
+  text-decoration: none;
+  text-align: center;
+}
+
 .km-icon-button-primary:hover {
   background-color: var(--primary-color);
   transition: background-color 0.2s;
