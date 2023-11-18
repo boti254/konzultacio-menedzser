@@ -1,9 +1,9 @@
+import { useParams } from "react-router-dom";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UserEditPage.css";
 import { useUser } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
 import { User } from "../../interfaces/Interfaces";
-import { useParams } from "react-router-dom";
 
 interface CheckboxState {
   student: boolean;
