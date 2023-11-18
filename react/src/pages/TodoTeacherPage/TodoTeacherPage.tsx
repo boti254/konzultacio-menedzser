@@ -59,7 +59,6 @@ function TodoTeacherPage() {
       fetchData(
         `https://szoftarch.webgravir.hu/api/todos/student/${selectedStudentId}`
       );
-    console.log(selectedStudentId);
   }, [selectedStudentId]);
 
   const handleTaskNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
