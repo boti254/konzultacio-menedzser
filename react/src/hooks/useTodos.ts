@@ -56,7 +56,8 @@ export function useTodos() {
     url: string,
     done: number,
     title: string,
-    due: string
+    due: string,
+    student_id: number
   ) => {
     try {
       const response = await fetch(url, {
@@ -66,7 +67,7 @@ export function useTodos() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          student_id: 3,
+          student_id: student_id,
           title: title,
           due: due,
           done: done,
@@ -81,6 +82,7 @@ export function useTodos() {
           todo.title = result.title;
           todo.due = result.due;
           todo.done = result.done;
+          todo.student_id = result.student_id;
           return { ...todo };
         }
         return todo;
@@ -97,7 +99,8 @@ export function useTodos() {
     url: string,
     done: number,
     title: string,
-    due: string
+    due: string,
+    student_id: number
   ) => {
     try {
       const response = await fetch(url, {
@@ -107,7 +110,7 @@ export function useTodos() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          student_id: 3,
+          student_id: student_id,
           title: title,
           due: due,
           done: done,
