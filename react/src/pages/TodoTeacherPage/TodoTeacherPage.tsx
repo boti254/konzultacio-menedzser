@@ -1,12 +1,19 @@
 import "./TodoTeacherPage.css";
 import BackButton from "../../components/BackButton/BackButton";
-import { TodoTask } from "../../interfaces/Interfaces";
+import { TodoTask, UserPair } from "../../interfaces/Interfaces";
 import { useEffect, useState } from "react";
 import { useTodos } from "../../hooks/useTodos";
+import { usePairs } from "../../hooks/usePairs";
 
 function TodoTeacherPage() {
+  const [selectedStudentId, setSelectedStudent] = useState("");
+  const [taskName, setTaskName] = useState("");
+  const [dueDate, setDueDate] = useState("");
+
   const { data, loading, fetchData, deleteTodo, updateTodo, createTodo } =
     useTodos();
+
+  const { data: userData, loading: userLoading, fetchStudents } = usePairs();
 
   const handleDelete = (id: number) => {
     deleteTodo(`https://szoftarch.webgravir.hu/api/todos/delete/${id}`, id);
@@ -16,31 +23,44 @@ function TodoTeacherPage() {
     id: number,
     done: number,
     title: string,
-    due: string
+    due: string,
+    student_id: number
   ) => {
     updateTodo(
       `https://szoftarch.webgravir.hu/api/todos/store/${id}`,
       done,
       title,
-      due
+      due,
+      student_id
     );
   };
 
-  const handleCreate = (done: number, title: string, due: string) => {
+  const handleCreate = (
+    done: number,
+    title: string,
+    due: string,
+    student_id: number
+  ) => {
     createTodo(
       `https://szoftarch.webgravir.hu/api/todos/store/0`,
       done,
       title,
-      due
+      due,
+      student_id
     );
   };
 
   useEffect(() => {
-    fetchData("https://szoftarch.webgravir.hu/api/todos");
+    fetchStudents("https://szoftarch.webgravir.hu/api/pairs/my-students");
   }, []);
 
-  const [taskName, setTaskName] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  useEffect(() => {
+    if (selectedStudentId !== "Diák" && selectedStudentId !== "")
+      fetchData(
+        `https://szoftarch.webgravir.hu/api/todos/student/${selectedStudentId}`
+      );
+    console.log(selectedStudentId);
+  }, [selectedStudentId]);
 
   const handleTaskNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskName(event.target.value);
@@ -48,6 +68,10 @@ function TodoTeacherPage() {
 
   const handleDueDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDueDate(event.target.value);
+  };
+
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedStudent(event.target.value);
   };
 
   const newStyle = {
@@ -64,9 +88,23 @@ function TodoTeacherPage() {
           <label htmlFor="taskName" className="km-label">
             Válassz diákot
           </label>
-          <select name="studentSelect" id="studentSelect" className="km-select">
-            <option value="ABC123">Pelda Bela</option>
-            <option value="XYZ987">Janos Fanos</option>
+          <select
+            name="studentSelect"
+            id="studentSelect"
+            className="km-select"
+            value={selectedStudentId}
+            onChange={handleSelect}
+          >
+            <option>Diák</option>
+            {userLoading ? (
+              <option>Betöltés...</option>
+            ) : (
+              userData?.map((userPair: UserPair) => (
+                <option key={userPair.pair.id} value={userPair.user.id}>
+                  {userPair.user.name} - {userPair.user.neptun}
+                </option>
+              ))
+            )}
           </select>
         </div>
       </div>
@@ -89,7 +127,8 @@ function TodoTeacherPage() {
                     feladat.id,
                     Number(feladat.done),
                     taskName,
-                    dueDate
+                    dueDate,
+                    Number(selectedStudentId)
                   );
                 }}
               >
@@ -102,7 +141,8 @@ function TodoTeacherPage() {
                     feladat.id,
                     Number(!feladat.done),
                     feladat.title,
-                    feladat.due
+                    feladat.due,
+                    Number(selectedStudentId)
                   );
                 }}
               >
@@ -151,7 +191,7 @@ function TodoTeacherPage() {
         <button
           className="km-button"
           onClick={() => {
-            handleCreate(0, taskName, dueDate);
+            handleCreate(0, taskName, dueDate, Number(selectedStudentId));
           }}
         >
           Felvétel
