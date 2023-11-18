@@ -14,27 +14,17 @@
     padding: 0;
     max-height: 300px;
     overflow-y: auto;
-    border: 1px solid #ddd;
+    border: 1px solid var(--font-color);
     border-radius: 5px;
     margin-bottom: 20px;
   }
   
   .contact-list li {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--font-color);
     cursor: pointer;
   }
   
   .contact-list li:last-child {
     border-bottom: none;
-  }
-  
-  .start-chat-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+  }  
