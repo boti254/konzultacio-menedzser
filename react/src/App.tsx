@@ -21,6 +21,7 @@ function App() {
       <div className="app-wrapper">
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="menu/:name" element={<MenuPage />} />
           <Route path="menu" element={<MenuPage />} />
           <Route path="todo-student" element={<TodoStudentPage />} />
           <Route path="todo-teacher" element={<TodoTeacherPage />} />

@@ -1,8 +1,11 @@
 import "./MenuPage.css";
+import { useParams } from "react-router-dom";
 
 function MenuPage() {
+  const { name } = useParams();
   return (
     <div className="menu-container">
+      <label className="km-label">{name}</label>
       <a className="km-button" href="/todo-student">
         TODO-Hallgató
       </a>
@@ -15,7 +18,7 @@ function MenuPage() {
       <a className="km-button" href="/chat">
         Chat
       </a>
-      <a className="km-button" href="users">
+      <a className="km-button" href="/users">
         Felhasználók
       </a>
       <a className="km-button" href="/appointment-edit-list">

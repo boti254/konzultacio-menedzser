@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { User } from "../interfaces/Interfaces";
 
 export const useLogin = (email: string, password: string) => {
   // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
+  //const [userState, setUser] = useState<User>();
   const [isLoggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -17,12 +18,13 @@ export const useLogin = (email: string, password: string) => {
         body: JSON.stringify({ email: email, password: password }),
       });
       const result = await response;
-      const loginResponse: { message: string; token: string } =
+      const loginResponse: { message: string; token: string; user: User } =
         await result.json();
       if (result.status == 200) {
         localStorage.setItem("token", loginResponse.token);
         setLoggedIn(true);
-        navigate("/menu");
+        //setUser(user)
+        navigate(`/menu/${loginResponse.user.name}`);
       } else {
         alert(loginResponse.message);
       }
