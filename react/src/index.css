@@ -140,3 +140,8 @@ a.km-icon-button-primary {
   border: 1px solid var(--border-color);
   padding: 8px 10px;
 }
+
+/* margins */
+.default-margin {
+  margin: 20px;
+}

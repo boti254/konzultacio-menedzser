@@ -1,33 +1,33 @@
 .consultant-search-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
-  
-  .search-bar {
-    margin-bottom: 20px;
-  }
-  
-  .consultant-list {
-    text-align: center;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    max-height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  li:last-child {
-    border-bottom: none;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.consultant-list {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+li:last-child {
+  border-bottom: none;
+}
