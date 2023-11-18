@@ -31,6 +31,26 @@ export function usePairs() {
     }
   };
 
+  const applyToTeacher = async (url: string) => {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      if (response.status !== 200) {
+        const { message }: { message: string } = await response.json();
+        alert(message);
+      }
+    } catch {
+      setError(null);
+    } finally {
+      /* empty */
+    }
+  };
+
   useEffect(() => {
     setData(data);
   }, [data]);
@@ -41,5 +61,6 @@ export function usePairs() {
     loading,
     error,
     fetchStudents,
+    applyToTeacher,
   };
 }

@@ -1,27 +1,37 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import "./ListStudentPage.css";
 import BackButton from "../../components/BackButton/BackButton";
-
-const mockConsultants = [
-  { id: 1, name: "John Doe" },
-  { id: 2, name: "Jane Smith" },
-  { id: 3, name: "Bob Johnson" },
-];
+import { usePairs } from "../../hooks/usePairs";
+import { useUsers } from "../../hooks/useUsers";
 
 function ListStudentPage() {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [filteredConsultants, setFilteredConsultants] =
-    useState(mockConsultants);
+  // const [searchTerm, setSearchTerm] = useState<string>("");
+  // const [filteredConsultants, setFilteredConsultants] =
+  //   useState(mockConsultants);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const term = e.target.value.toLowerCase();
-    setSearchTerm(term);
+  const { applyToTeacher } = usePairs();
 
-    const filtered = mockConsultants.filter((consultant) =>
-      consultant.name.toLowerCase().includes(term)
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const term = e.target.value.toLowerCase();
+  //   setSearchTerm(term);
+
+  //   const filtered = mockConsultants.filter((consultant) =>
+  //     consultant.name.toLowerCase().includes(term)
+  //   );
+  //   setFilteredConsultants(filtered);
+  // };
+  const handleApply = (id: number) => {
+    console.log(id);
+    applyToTeacher(
+      `https://szoftarch.webgravir.hu/api/pairs/apply-to-teacher/${id}`
     );
-    setFilteredConsultants(filtered);
   };
+
+  const { data, loading, fetchUsers } = useUsers();
+
+  useEffect(() => {
+    fetchUsers("https://szoftarch.webgravir.hu/api/users/teachers");
+  }, []);
 
   return (
     <div className="consultant-search-container">
@@ -32,19 +42,28 @@ function ListStudentPage() {
           type="text"
           className="km-input"
           placeholder="Konzulens keresése"
-          value={searchTerm}
-          onChange={handleSearch}
+          //value={searchTerm}
+          // onChange={handleSearch}
         />
       </div>
       <div className="consultant-list">
         <h2>Konzulensek</h2>
         <ul>
-          {filteredConsultants.map((consultant) => (
-            <li key={consultant.id}>
-              <span>{consultant.name}</span>
-              <button className="km-icon-button-primary">J</button>
-            </li>
-          ))}
+          {loading
+            ? "Betöltés..."
+            : data?.map((consultant) => (
+                <li key={consultant.id}>
+                  <span>
+                    {consultant.name} - {consultant.neptun}
+                  </span>
+                  <button
+                    className="km-icon-button-primary"
+                    onClick={() => handleApply(consultant.id)}
+                  >
+                    J
+                  </button>
+                </li>
+              ))}
         </ul>
       </div>
     </div>
