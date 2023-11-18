@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./ChatPage.css";
+import BackButton from "../../components/BackButton/BackButton";
 
 function ChatPage() { 
   const [newMessage, setNewMessage] = useState<string>("");
 
   return (
     <div className="chat-container">
+    <BackButton linkTo={"/menu"} />
       <div className="chat-messages">
         {/* {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
@@ -14,19 +16,19 @@ function ChatPage() {
           </div>
         ))} */}
       </div>
-      <div className="chat-input">
-        <input
+      <div className="chat-container">
+        <input className="chat-input"
           type="text"
-          placeholder="Type your message..."
+          placeholder="Üzenet..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button
+        <button className="km-button"
           onClick={() => {
             return 0;
           }}
         >
-          Send
+          Küldés
         </button>
       </div>
     </div>

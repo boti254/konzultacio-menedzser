@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import './ChatContactPage.css';
+import BackButton from "../../components/BackButton/BackButton";
 
 const mockContacts = [
   { id: 1, name: 'Alice', userType: 'student' },
@@ -17,7 +18,8 @@ function ChatContactsPage() {
 
   return (
     <div className="chat-contact-container">
-      <h2>Contacts</h2>
+      <BackButton linkTo={"/menu"} />
+      <h2>Kontaktok</h2>
       <ul className="contact-list">
         {mockContacts.map((contact) => (
           <li key={contact.id} onClick={() => handleContactSelect(contact)}>
@@ -26,8 +28,8 @@ function ChatContactsPage() {
         ))}
       </ul>
       {selectedContact && (
-        <Link to={`/chat/${selectedContact.id}`} className="start-chat-button">
-          Start Chat with {selectedContact.name}
+        <Link to={`/chat/${selectedContact.id}`} className="km-button">
+          Chat indítása vele: {selectedContact.name}
         </Link>
       )}
     </div>
