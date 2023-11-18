@@ -1,109 +1,47 @@
 import "./MenuPage.css";
-import { useNavigate } from "react-router-dom";
 
 function MenuPage() {
-  const navigate = useNavigate();
-
-  const handleTodoStudentClick = () => {
-    navigate("/todo-student");
-  };
-
-  const handleTodoTeacherClick = () => {
-    navigate("/todo-teacher");
-  };
-
-  const handleChatContactsClick = () => {
-    navigate("/chat-contacts");
-  };
-
-  const handleChatClick = () => {
-    navigate("/chat");
-  };
-
-  const handleFhClick = () => {
-    navigate("/users");
-  };
-
-  const handleSaClick = () => {
-    navigate("/user-edit");
-  };
-
-  const handleIszClick = () => {
-    navigate("/appointment-edit-list");
-  };
-
-  const handleIjClick = () => {
-    navigate("/appointment-list");
-  };
-
-  const handleAppointmentStudentEditClick = () => {
-    navigate("/appointment-student-edit");
-  };
-
-  const handleAppointmentTeacherEditClick = () => {
-    navigate("/appointment-teacher-edit");
-  };
-
-  const handleListStudentClick = () => {
-    navigate("/list-student");
-  };
-
-  const handleListTeacherClick = () => {
-    navigate("/list-teacher");
-  };
-
-  const handleLogoutClick = () => {
-    //TODO
-    navigate("/");
-  };
-
   return (
     <div className="menu-container">
-      <button className="km-button" onClick={handleTodoStudentClick}>
+      <a className="km-button" href="/todo-student">
         TODO-Hallgató
-      </button>
-      <button className="km-button" onClick={handleTodoTeacherClick}>
+      </a>
+      <a className="km-button" href="/todo-teacher">
         TODO-Konzulens
-      </button>
-      <button className="km-button" onClick={handleChatContactsClick}>
+      </a>
+      <a className="km-button" href="/chat-contacts">
         Chat Kontaktok
-      </button>
-      <button className="km-button" onClick={handleChatClick}>
+      </a>
+      <a className="km-button" href="/chat">
         Chat
-      </button>
-      <button className="km-button" onClick={handleFhClick}>
+      </a>
+      <a className="km-button" href="users">
         Felhasználók
-      </button>
-      <button className="km-button" onClick={handleSaClick}>
+      </a>
+      <a className="km-button" href="/user-edit">
         Saját adatok
-      </button>
-      <button className="km-button" onClick={handleIszClick}>
+      </a>
+      <a className="km-button" href="/appointment-edit-list">
         Időpont szerkesztése
-      </button>
-      <button className="km-button" onClick={handleIjClick}>
+      </a>
+      <a className="km-button" href="/appointment-list">
         Időpontra jelentkezés
-      </button>
-      <button
-        className="km-button"
-        onClick={handleAppointmentStudentEditClick}
-      >
+      </a>
+      <a className="km-button" href="/appointment-student-edit">
         Konzultációs időpont szerkesztése-Hallgató
-      </button>
-      <button
-        className="km-button"
-        onClick={handleAppointmentTeacherEditClick}
-      >
+      </a>
+      <a className="km-button" href="/appointment-teacher-edit">
         Konzultációs időpont szerkesztése-Konzulens
-      </button>
-      <button className="km-button" onClick={handleListStudentClick}>
+      </a>
+      <a className="km-button" href="/list-student">
         Hallgató lista
-      </button>
-      <button className="km-button" onClick={handleListTeacherClick}>
+      </a>
+      <a className="km-button" href="/list-teacher">
         Konzulens lista
-      </button>
-      <button className="km-button-error" onClick={handleLogoutClick}>
+      </a>
+      <a className="km-button-error" href="/">
         Kijelentkezés
-      </button>
+      </a>
     </div>
   );
 }

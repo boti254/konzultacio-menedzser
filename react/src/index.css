@@ -41,6 +41,10 @@ a.km-button {
   border: 0;
 }
 
+a.km-button-error {
+  text-decoration: none;
+}
+
 .km-button-error:hover {
   background-color: var(--onerror-color);
   transition: background-color 0.2s;
