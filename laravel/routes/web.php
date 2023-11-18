@@ -40,6 +40,7 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
     Route::get('/api/users', [UserController::class, "index"]);
     Route::get('/api/users/search/{expr}', [UserController::class, "search"]);
     Route::get('/api/users/get/{id}', [UserController::class, "getById"]);
+    Route::get('/api/users/teachers', [UserController::class, "getAllTeachers"]);
     Route::post('/api/users/store/{id}', [UserController::class, "store"]);
     Route::post('/api/users/update-own', [UserController::class, "updateOwnProfile"]);
     Route::delete('/api/users/delete/{id}', [UserController::class, "delete"]);
