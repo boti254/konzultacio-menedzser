@@ -51,7 +51,7 @@ class UserController extends Controller
             $req_array = [
                 'name' => $user->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                //'password' => Hash::make($request->password),
                 'neptun' => $user->neptun,
                 'student' => $user->student,
                 'teacher' => $user->teacher,
@@ -73,7 +73,7 @@ class UserController extends Controller
             $req_array = [
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                //'password' => Hash::make($request->password),
                 'neptun' => $request->neptun,
                 'student' => $request->student,
                 'teacher' => $request->teacher,
