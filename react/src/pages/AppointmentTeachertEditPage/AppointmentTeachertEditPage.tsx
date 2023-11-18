@@ -2,6 +2,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import "./AppointmentTeachertEditPage.css";
 
 function AppointmentTeachertEditPage() {
+  const data = ["Pelda Bela", "Janos Fanos"];
   return (
     <div className="appointment-teacher-edit-page-container">
       <BackButton linkTo={"/menu"} />
@@ -37,12 +38,21 @@ function AppointmentTeachertEditPage() {
         </label>
         <div className="appointment-participant-container">
           <button className="icon-container km-icon-button-primary">-</button>
-          <label htmlFor="appointmentParticipant" className="km-label">
+          <label htmlFor="appointmentParticipant" className="km-label-greener">
             3
           </label>
           <button className="icon-container km-icon-button-primary">+</button>
         </div>
       </div>
+      {data.map((participant) => (
+        <div className="appointment-participant-list-container" key={participant}>
+          <div className="date-container">{participant}</div>
+          <div className="buttonlist">
+            <button className="icon-container km-icon-button-primary">-</button>
+            <button className="icon-container km-icon-button-primary">+</button>
+          </div>
+        </div>
+      ))}
       <button className="save-btn">Mentés</button>
     </div>
   );

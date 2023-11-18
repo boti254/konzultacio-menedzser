@@ -6,7 +6,7 @@
     padding-bottom: 20px;
   }
   
-  .appointment-teacher-edit-page-container {
+  .appointment-student-edit-page-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,3 +55,8 @@
     gap: 10px;
     flex-direction: row;
   }
+
+  .apply-btn {
+    width: 150px;
+  }
+  
