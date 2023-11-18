@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { UserPair } from "../interfaces/Interfaces";
+import { Pair, UserPair } from "../interfaces/Interfaces";
 import { useNavigate } from "react-router-dom";
 
 export function usePairs() {
@@ -40,10 +40,68 @@ export function usePairs() {
         },
       });
 
+      if (response.status !== 200 && response.status !== 201) {
+        const { message }: { message: string } = await response.json();
+        alert(message);
+      }
+    } catch {
+      setError(null);
+    } finally {
+      /* empty */
+    }
+  };
+
+  const acceptStudent = async (url: string) => {
+    try {
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
       if (response.status !== 200) {
         const { message }: { message: string } = await response.json();
         alert(message);
       }
+      const result: Pair = await response.json();
+      const updatedPairs = data?.map((userPair) => {
+        if (userPair.pair.id === result.id) {
+          userPair.pair.teacher_id = result.teacher_id;
+          userPair.pair.student_id = result.student_id;
+          userPair.pair.accepted = result.accepted;
+          return { ...userPair };
+        }
+        return userPair;
+      });
+      setData(updatedPairs);
+    } catch {
+      setError(null);
+    } finally {
+      /* empty */
+    }
+  };
+
+  const deleteStudent = async (url: string) => {
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      if (response.status !== 200) {
+        const { message }: { message: string } = await response.json();
+        alert(message);
+      }
+      const result: { message: string; pair_id: number } =
+        await response.json();
+
+      const updatedPairs = data?.filter(
+        (userPair) => userPair.pair.id !== result.pair_id
+      );
+      setData(updatedPairs);
     } catch {
       setError(null);
     } finally {
@@ -62,5 +120,7 @@ export function usePairs() {
     error,
     fetchStudents,
     applyToTeacher,
+    deleteStudent,
+    acceptStudent,
   };
 }

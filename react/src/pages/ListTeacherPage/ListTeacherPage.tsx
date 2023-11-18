@@ -1,13 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./ListTeacherPage.css";
 import BackButton from "../../components/BackButton/BackButton";
 import { usePairs } from "../../hooks/usePairs";
-
-// const mockStudents = [
-//   { id: 1, name: "John Doe" },
-//   { id: 2, name: "Jane Smith" },
-//   { id: 3, name: "Bob Johnson" },
-// ];
 
 function ListTeacherPage() {
   // const [searchTerm, setSearchTerm] = useState<string>("");
@@ -23,7 +17,18 @@ function ListTeacherPage() {
   //   setFilteredStudents(filtered);
   // };
 
-  const { data, loading, fetchStudents } = usePairs();
+  const { data, loading, fetchStudents, acceptStudent, deleteStudent } =
+    usePairs();
+
+  const handleAccept = (id: number) => {
+    acceptStudent(
+      `https://szoftarch.webgravir.hu/api/pairs/accept-student/${id}`
+    );
+  };
+
+  const handleDelete = (id: number) => {
+    deleteStudent(`https://szoftarch.webgravir.hu/api/pairs/delete/${id}`);
+  };
 
   useEffect(() => {
     fetchStudents("https://szoftarch.webgravir.hu/api/pairs/my-students");
@@ -50,8 +55,22 @@ function ListTeacherPage() {
             : data?.map((student) => (
                 <li key={student.user.id}>
                   <span>{student.user.name}</span>
-                  <button className="km-icon-button-primary">+</button>
-                  <button className="km-icon-button-error">-</button>
+                  {student.pair.accepted ? (
+                    ""
+                  ) : (
+                    <button
+                      className="km-icon-button-primary"
+                      onClick={() => handleAccept(student.user.id)}
+                    >
+                      +
+                    </button>
+                  )}
+                  <button
+                    className="km-icon-button-error"
+                    onClick={() => handleDelete(student.user.id)}
+                  >
+                    -
+                  </button>
                 </li>
               ))}
         </ul>
