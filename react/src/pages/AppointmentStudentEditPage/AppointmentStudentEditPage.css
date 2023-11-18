@@ -1,0 +1,62 @@
+.appointment-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 300px;
+    padding-bottom: 20px;
+  }
+  
+  .appointment-student-edit-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*gap: 20px;*/
+    padding-top: 50px;
+  }
+
+  .appointment-page-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .save-btn {
+    padding: 10spx;
+  }
+
+  .appointment-participant-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+  }
+
+  .appointment-participant-list-container {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .buttonlist {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+    flex-direction: row;
+  }
+
+  .apply-btn {
+    width: 150px;
+  }
+  
