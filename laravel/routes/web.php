@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PairController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ChatMessageController;
 use App\Http\Middleware\JwtAuthMiddleware;
 
 /*
@@ -67,6 +68,11 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
     Route::post('/api/applications/apply-to/{id}', [ApplicationController::class, "applyToMeeting"]);
     Route::patch('/api/applications/accept/{id}', [ApplicationController::class, "acceptApplication"]);
     Route::delete('/api/applications/delete/{id}', [ApplicationController::class, "delete"]);
+
+    //chat
+    Route::post('/api/chat/send-to/{uid}', [ChatMessageController::class, "sendTo"]);
+    Route::get('/api/chat/messages-from/{uid}', [ChatMessageController::class, "messagesFrom"]);
+    Route::get('/api/chat/get-new-messages/{uid}/{last_id}', [ChatMessageController::class, "getNewMessages"]);
 });
 
 
