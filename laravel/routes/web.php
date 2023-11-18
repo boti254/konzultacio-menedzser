@@ -59,6 +59,8 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
     Route::get('/api/meetings/meeting/{id}', [MeetingController::class, "getById"]);
     Route::post('/api/meetings/store/{id}', [MeetingController::class, "store"]);
     Route::delete('/api/meetings/delete/{id}', [MeetingController::class, "delete"]);
+
+
 });
 
 
