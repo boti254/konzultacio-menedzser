@@ -1,14 +1,9 @@
-body, html {
-  height: 100vh;
-  overflow: hidden;
-}
-
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: var(--km-white);
+  padding-top: 200px;
 }
 
 .login-form {
