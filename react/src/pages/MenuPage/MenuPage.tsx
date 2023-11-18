@@ -5,7 +5,8 @@ function MenuPage() {
   const { name } = useParams();
   return (
     <div className="menu-container">
-      <label className="km-label">{name}</label>
+
+      {name ? <label className="km-label">{name}</label> : ""}
       <a className="km-button" href="/todo-student">
         TODO-Hallgató
       </a>
