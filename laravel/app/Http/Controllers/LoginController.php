@@ -43,6 +43,7 @@ class LoginController extends Controller
             return response()->json([
                 'message' => 'User Logged In Successfully',
                 'token' => $token,
+                'user' => $user
             ], 200);
 
         } catch (\Throwable $th) {
