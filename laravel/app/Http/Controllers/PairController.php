@@ -172,10 +172,12 @@ class PairController extends Controller
                 $student = User::find($s_id);
                 if ($student) {
                     $pair = Pair::where('student_id', $student->id)->where('teacher_id', $user->id)->first();
+                    $pair_id = $pair->id;
                     if ($pair){
                         $pair->delete();
                         return response()->json([
-                            'message' => 'Pair deleted successfully'
+                            'message' => 'Pair deleted successfully',
+                            'pair_id' => $pair_id,
                         ], 200);
                     }
                     return response()->json([

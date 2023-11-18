@@ -29,6 +29,16 @@ class UserController extends Controller
         ], 403);
     }
 
+    public function getAllTeachers(Request $request) {
+        $user = User::find($request->uid);
+        if ($user) {
+            return User::where('teacher', true)->where('id', '!=', $user->id)->get();
+        }
+        return response()->json([
+            'message' => 'Unauthorised'
+        ], 403);
+    }
+
     public function getById($id, Request $request) {
         $user = User::find($request->uid);
         if ($user && ($user->admin || $id == $request->uid)) {

@@ -1,8 +1,12 @@
 import "./MenuPage.css";
+import { useParams } from "react-router-dom";
 
 function MenuPage() {
+  const { name } = useParams();
   return (
     <div className="menu-container">
+
+      {name ? <label className="km-label">{name}</label> : ""}
       <a className="km-button" href="/todo-student">
         TODO-Hallgató
       </a>
