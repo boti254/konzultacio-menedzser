@@ -24,7 +24,7 @@ function App() {
           <Route path="menu" element={<MenuPage />} />
           <Route path="todo-student" element={<TodoStudentPage />} />
           <Route path="todo-teacher" element={<TodoTeacherPage />} />
-          <Route path="user-edit" element={<UserEditPage />} />
+          <Route path="user-edit/:id" element={<UserEditPage />} />
           <Route path="users" element={<UsersPage />} />
           <Route path="list-teacher" element={<ListTeacherPage />} />
           <Route path="list-student" element={<ListStudentPage />} />

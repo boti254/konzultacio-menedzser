@@ -1,26 +1,62 @@
-import { useState } from "react";
+import { useParams } from "react-router-dom";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UserEditPage.css";
-
-interface CheckboxState {
-  student: boolean;
-  teacher: boolean;
-  admin: boolean;
-}
+import { useUser } from "../../hooks/useUser";
+import { useEffect, useState } from "react";
+import { User } from "../../interfaces/Interfaces";
 
 function UserEditPage() {
-  const [checkedState, setCheckedState] = useState<CheckboxState>({
-    student: false,
-    teacher: false,
-    admin: false,
+  const { id } = useParams();
+  const { fetchUser, user, updateUser } = useUser();
+
+  const [checkedState, setCheckedState] = useState<User>({
+    id: NaN,
+    name: "",
+    email: "",
+    neptun: "",
+    email_verified_at: "",
+    created_at: "",
+    updated_at: "",
+    student: NaN,
+    teacher: NaN,
+    admin: NaN,
   });
 
-  const handleCheckboxChange = (checkboxId: keyof CheckboxState) => {
+  const handleCheckboxChange = (checkboxId: keyof User) => {
     setCheckedState((prevCheckboxes) => ({
       ...prevCheckboxes,
       [checkboxId]: !prevCheckboxes[checkboxId],
     }));
   };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckedState({
+      ...checkedState,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSave = () => {
+    updateUser(
+      checkedState.name,
+      checkedState.email,
+      checkedState.neptun,
+      checkedState.student,
+      checkedState.teacher,
+      checkedState.admin,
+      `https://szoftarch.webgravir.hu/api/users/store/${user?.id}`
+    );
+  };
+
+  useEffect(() => {
+    fetchUser(`https://szoftarch.webgravir.hu/api/users/get/${id}`);
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setCheckedState(user);
+    }
+  }, [user]);
 
   return (
     <div className="user-edit-page-container">
@@ -33,7 +69,10 @@ function UserEditPage() {
           type="text"
           id="userName"
           className="km-input"
+          name="name"
           placeholder="Nev"
+          value={checkedState?.name}
+          onChange={handleChange}
         />
       </div>
       <div className="user-input-wrapper">
@@ -43,8 +82,11 @@ function UserEditPage() {
         <input
           type="email"
           id="userEmail"
+          name="email"
           className="km-input"
           placeholder="Email"
+          value={checkedState?.email}
+          onChange={handleChange}
         />
       </div>
       <div className="user-input-wrapper">
@@ -56,6 +98,9 @@ function UserEditPage() {
           id="userNeptun"
           className="km-input"
           placeholder="Neptun"
+          value={checkedState?.neptun}
+          name="neptun"
+          onChange={handleChange}
         />
       </div>
       <div className="user-input-wrapper">
@@ -66,7 +111,7 @@ function UserEditPage() {
               type="checkbox"
               id="studentCheck"
               name="studentCheck"
-              checked={checkedState.student}
+              checked={Boolean(checkedState.student)}
               onChange={() => handleCheckboxChange("student")}
             />
             <div className="user-role">Hallgató </div>
@@ -76,7 +121,7 @@ function UserEditPage() {
               type="checkbox"
               id="teacherCheck"
               name="teacherCheck"
-              checked={checkedState.teacher}
+              checked={Boolean(checkedState.teacher)}
               onChange={() => handleCheckboxChange("teacher")}
             />
             <div className="user-role">Konzulens </div>
@@ -86,14 +131,16 @@ function UserEditPage() {
               type="checkbox"
               id="adminCheck"
               name="adminCheck"
-              checked={checkedState.admin}
+              checked={Boolean(checkedState.admin)}
               onChange={() => handleCheckboxChange("admin")}
             />
             <div className="user-role">Admin </div>
           </label>
         </div>
       </div>
-      <button className="save-btn km-button">Mentés</button>
+      <button className="save-btn km-button" onClick={handleSave}>
+        Mentés
+      </button>
     </div>
   );
 }
