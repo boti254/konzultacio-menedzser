@@ -1,6 +1,27 @@
+import { useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UserEditPage.css";
+
+interface CheckboxState {
+  student: boolean;
+  teacher: boolean;
+  admin: boolean;
+}
+
 function UserEditPage() {
+  const [checkedState, setCheckedState] = useState<CheckboxState>({
+    student: false,
+    teacher: false,
+    admin: false,
+  });
+
+  const handleCheckboxChange = (checkboxId: keyof CheckboxState) => {
+    setCheckedState((prevCheckboxes) => ({
+      ...prevCheckboxes,
+      [checkboxId]: !prevCheckboxes[checkboxId],
+    }));
+  };
+
   return (
     <div className="user-edit-page-container">
       <BackButton linkTo={"/menu"} />
@@ -40,12 +61,39 @@ function UserEditPage() {
       <div className="user-input-wrapper">
         <label className="km-label">Jogosultság</label>
         <div className="user-role-container">
-          <button className="user-role">Hallgató</button>
-          <button className="user-role">Konzulens</button>
-          <button className="user-role">Admin</button>
+          <label htmlFor="studentCheck">
+            <input
+              type="checkbox"
+              id="studentCheck"
+              name="studentCheck"
+              checked={checkedState.student}
+              onChange={() => handleCheckboxChange("student")}
+            />
+            <div className="user-role">Hallgató </div>
+          </label>
+          <label htmlFor="teacherCheck">
+            <input
+              type="checkbox"
+              id="teacherCheck"
+              name="teacherCheck"
+              checked={checkedState.teacher}
+              onChange={() => handleCheckboxChange("teacher")}
+            />
+            <div className="user-role">Konzulens </div>
+          </label>
+          <label htmlFor="adminCheck">
+            <input
+              type="checkbox"
+              id="adminCheck"
+              name="adminCheck"
+              checked={checkedState.admin}
+              onChange={() => handleCheckboxChange("admin")}
+            />
+            <div className="user-role">Admin </div>
+          </label>
         </div>
       </div>
-      <button className="save-btn">Mentés</button>
+      <button className="save-btn km-button">Mentés</button>
     </div>
   );
 }
