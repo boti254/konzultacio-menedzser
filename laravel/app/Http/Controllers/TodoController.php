@@ -10,18 +10,33 @@ use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
-    public function index() {
-        $user = User::find(Auth::id());
+    public function index(Request $request) {
+        $user = User::find($request->uid);
         if ($user) {
-            return Todo::all();
+            return Todo::where('student_id', $user->id)->get();
         }
         return response()->json([
             'message' => 'Please log in'
         ], 403);
     }
 
-    public function getById($id) {
-        $user = User::find(Auth::id());
+    public function getAll(Request $request) {
+        $user = User::find($request->uid);
+        if ($user) {
+            if($user->admin){
+                return Todo::all();
+            }
+            return response()->json([
+                'message' => 'Unauthorised'
+            ], 401);
+        }
+        return response()->json([
+            'message' => 'Please log in'
+        ], 403);
+    }
+
+    public function getById($id, Request $request) {
+        $user = User::find($request->uid);
         if ($user) {
             $todo = Todo::find($id);
             if (!$todo){
@@ -41,8 +56,8 @@ class TodoController extends Controller
         ], 403);
     }
 
-    public function getAllByUserId($student_id) {
-        $user = User::find(Auth::id());
+    public function getAllByUserId($student_id, Request $request) {
+        $user = User::find($request->uid);
 
         // if user logged in and either a student who wnats to get their own todos or a teacher getting their students todos or user is admin
         if ($user &&
@@ -54,13 +69,13 @@ class TodoController extends Controller
         }
         return response()->json([
             'message' => 'Unauthorised'
-        ], 403);
+        ], 401);
     }
 
 
 
     public function store(Request $request) {
-        $user = User::find(Auth::id());
+        $user = User::find($request->uid);
         if ($user) {
 
             $id = $request->id;
@@ -109,8 +124,8 @@ class TodoController extends Controller
 
 
 
-    public function delete($id) {
-        $user = User::find(Auth::id());
+    public function delete($id, Request $request) {
+        $user = User::find($request->uid);
         $todo = Todo::find($id);
         if (!$todo){
             return response()->json([
