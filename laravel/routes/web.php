@@ -6,6 +6,8 @@ use App\Http\Controllers\TodoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PairController;
+use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Middleware\JwtAuthMiddleware;
 
 /*
@@ -49,6 +51,22 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
     Route::post('/api/pairs/apply-to-teacher/{t_id}', [PairController::class, "applyToTeacher"]);
     Route::patch('/api/pairs/accept-student/{s_id}', [PairController::class, "acceptStudent"]);
     Route::delete('/api/pairs/delete/{id}', [PairController::class, "delete"]);
+
+    //meetings
+    Route::get('/api/allmeetings', [MeetingController::class, "index"]);
+    Route::get('/api/meetings/my-meetings/teacher/{all}', [MeetingController::class, "myMeetingsTeacher"]);
+    Route::get('/api/meetings/my-meetings/student/{all}', [MeetingController::class, "myMeetingsStudent"]);
+    Route::get('/api/meetings/meeting/{id}', [MeetingController::class, "getById"]);
+    Route::post('/api/meetings/store/{id}', [MeetingController::class, "store"]);
+    Route::delete('/api/meetings/delete/{id}', [MeetingController::class, "delete"]);
+
+    //applications
+    Route::get('/api/allapplications', [ApplicationController::class, "index"]);
+    Route::get('/api/applications', [ApplicationController::class, "myApplications"]);
+    Route::get('/api/applications/meeting/{id}', [ApplicationController::class, "apllicationsToMeeting"]);
+    Route::post('/api/applications/apply-to/{id}', [ApplicationController::class, "applyToMeeting"]);
+    Route::patch('/api/applications/accept/{id}', [ApplicationController::class, "acceptApplication"]);
+    Route::delete('/api/applications/delete/{id}', [ApplicationController::class, "delete"]);
 });
 
 

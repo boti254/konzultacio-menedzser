@@ -20,29 +20,36 @@ class JwtAuth extends JwtHandler
 
     public function isValid()
     {
-        //dd($this->headers);
-        if (array_key_exists('authorization', $this->headers) && preg_match('/Bearer\s(\S+)/', $this->headers['authorization'][0], $matches)) {
+        try {
+            if (array_key_exists('authorization', $this->headers) && preg_match('/Bearer\s(\S+)/', $this->headers['authorization'][0], $matches)) {
 
-            $data = $this->jwtDecodeData($matches[1]);
+                $data = $this->jwtDecodeData($matches[1]);
 
-            if (
-                isset($data['data']->user_id) &&
-                $user = $this->fetchUser($data['data']->user_id)
-            ) :
-                return [
-                    "success" => 1,
-                    "user" => $user
-                ];
-            else :
+                if (
+                    isset($data['data']->user_id) &&
+                    $user = $this->fetchUser($data['data']->user_id)
+                ) :
+                    return [
+                        "success" => 1,
+                        "user" => $user
+                    ];
+                else :
+                    return [
+                        "success" => 0,
+                        "message" => $data['message'],
+                    ];
+                endif;
+            } else {
                 return [
                     "success" => 0,
-                    "message" => $data['message'],
+                    "message" => "Token not found in request"
                 ];
-            endif;
-        } else {
+            }
+        }
+        catch (\Throwable $th) {
             return [
                 "success" => 0,
-                "message" => "Token not found in request"
+                "message" => "Cannot validate"
             ];
         }
     }
