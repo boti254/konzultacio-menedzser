@@ -33,7 +33,7 @@ class MeetingController extends Controller
                 // Returns only the upcoming by default
                 if ($all == 0){
                     return Meeting::where('teacher_id', $user->id)
-                                  ->where('date', '>', Carbon::now())->get();
+                                  ->where('date', '>', Carbon::now('Europe/Budapest')->format('Y-m-d H:i:s'))->get();
                 }
                 // Returns all if $all set to anything else than 0
                 else {
