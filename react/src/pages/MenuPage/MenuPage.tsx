@@ -59,49 +59,49 @@ function MenuPage() {
 
   return (
     <div className="menu-container">
-      <button className="menu-button" onClick={handleTodoStudentClick}>
-        TODO-Student
+      <button className="km-button" onClick={handleTodoStudentClick}>
+        TODO-Hallgató
       </button>
-      <button className="menu-button" onClick={handleTodoTeacherClick}>
-        TODO-Teacher
+      <button className="km-button" onClick={handleTodoTeacherClick}>
+        TODO-Konzulens
       </button>
-      <button className="menu-button" onClick={handleChatContactsClick}>
-        ChatContacts
+      <button className="km-button" onClick={handleChatContactsClick}>
+        Chat Kontaktok
       </button>
-      <button className="menu-button" onClick={handleChatClick}>
+      <button className="km-button" onClick={handleChatClick}>
         Chat
       </button>
-      <button className="menu-button" onClick={handleFhClick}>
+      <button className="km-button" onClick={handleFhClick}>
         Felhasználók
       </button>
-      <button className="menu-button" onClick={handleSaClick}>
+      <button className="km-button" onClick={handleSaClick}>
         Saját adatok
       </button>
-      <button className="menu-button" onClick={handleIszClick}>
+      <button className="km-button" onClick={handleIszClick}>
         Időpont szerkesztése
       </button>
-      <button className="menu-button" onClick={handleIjClick}>
+      <button className="km-button" onClick={handleIjClick}>
         Időpontra jelentkezés
       </button>
       <button
-        className="menu-button"
+        className="km-button"
         onClick={handleAppointmentStudentEditClick}
       >
-        AppointmentStudentEdit
+        Konzultációs időpont szerkesztése-Hallgató
       </button>
       <button
-        className="menu-button"
+        className="km-button"
         onClick={handleAppointmentTeacherEditClick}
       >
-        AppointmentTeacherEdit
+        Konzultációs időpont szerkesztése-Konzulens
       </button>
-      <button className="menu-button" onClick={handleListStudentClick}>
-        ListStudent
+      <button className="km-button" onClick={handleListStudentClick}>
+        Hallgató lista
       </button>
-      <button className="menu-button" onClick={handleListTeacherClick}>
-        ListTeacher
+      <button className="km-button" onClick={handleListTeacherClick}>
+        Konzulens lista
       </button>
-      <button className="menu-logout-button" onClick={handleLogoutClick}>
+      <button className="km-button-error" onClick={handleLogoutClick}>
         Kijelentkezés
       </button>
     </div>
