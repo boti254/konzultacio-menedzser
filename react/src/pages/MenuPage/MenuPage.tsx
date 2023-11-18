@@ -18,9 +18,6 @@ function MenuPage() {
       <a className="km-button" href="users">
         Felhasználók
       </a>
-      <a className="km-button" href="/user-edit">
-        Saját adatok
-      </a>
       <a className="km-button" href="/appointment-edit-list">
         Időpont szerkesztése
       </a>
