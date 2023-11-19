@@ -22,7 +22,7 @@ function AppointmentListPage() {
     setSelectedTeacher(event.target.value);
     if (event.target.value !== "Diák" && event.target.value !== "") {
       fetchMeetings(
-        `https://szoftarch.webgravir.hu/api/meetings/of-teacher/6/0`
+        `https://szoftarch.webgravir.hu/api/meetings/of-teacher/${event.target.value}/0`
       );
     }
     if (event.target.value !== "Diák") {

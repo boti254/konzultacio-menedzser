@@ -24,9 +24,6 @@ function MenuPage() {
       <a className="km-button" href="/appointment-list">
         Időpontra jelentkezés
       </a>
-      <a className="km-button" href="/appointment-teacher-edit">
-        Konzultációs időpont szerkesztése-Konzulens
-      </a>
       <a className="km-button" href="/list-student">
         Hallgató lista
       </a>
