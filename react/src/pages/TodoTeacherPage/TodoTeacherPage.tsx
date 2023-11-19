@@ -10,8 +10,15 @@ function TodoTeacherPage() {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-  const { data, loading, fetchData, deleteTodo, updateTodo, createTodo } =
-    useTodos();
+  const {
+    data,
+    loading,
+    fetchData,
+    deleteTodo,
+    updateTodo,
+    createTodo,
+    setData,
+  } = useTodos();
 
   const { data: userData, loading: userLoading, fetchStudents } = usePairs();
 
@@ -54,13 +61,6 @@ function TodoTeacherPage() {
     fetchStudents("https://szoftarch.webgravir.hu/api/pairs/my-students");
   }, []);
 
-  useEffect(() => {
-    if (selectedStudentId !== "Diák" && selectedStudentId !== "")
-      fetchData(
-        `https://szoftarch.webgravir.hu/api/todos/student/${selectedStudentId}`
-      );
-  }, [selectedStudentId]);
-
   const handleTaskNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskName(event.target.value);
   };
@@ -71,6 +71,14 @@ function TodoTeacherPage() {
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedStudent(event.target.value);
+    if (event.target.value !== "Diák" && event.target.value !== "") {
+      fetchData(
+        `https://szoftarch.webgravir.hu/api/todos/student/${event.target.value}`
+      );
+    }
+    if (event.target.value !== "Diák") {
+      setData([]);
+    }
   };
 
   const newStyle = {
@@ -94,7 +102,7 @@ function TodoTeacherPage() {
             value={selectedStudentId}
             onChange={handleSelect}
           >
-            <option>Diák</option>
+            <option value="">Diák</option>
             {userLoading ? (
               <option>Betöltés...</option>
             ) : (

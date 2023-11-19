@@ -32,3 +32,11 @@ export interface Pair {
   student_id: number;
   accepted: number;
 }
+
+export interface Meeting {
+  id: number;
+  teacher_id: number;
+  date: string;
+  location: string;
+  count: number;
+}

@@ -41,7 +41,7 @@ function App() {
           />
           <Route path="appointment-list" element={<AppointmentListPage />} />
           <Route
-            path="appointment-student-edit"
+            path="appointment-student-edit/:id"
             element={<AppointmentStudentEditPage />}
           />
         </Routes>
