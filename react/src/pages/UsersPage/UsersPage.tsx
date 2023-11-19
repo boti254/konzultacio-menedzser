@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UsersPage.css";
 import { useUsers } from "../../hooks/useUsers";
@@ -8,6 +8,20 @@ function UsersPage() {
   useEffect(() => {
     fetchUsers("https://szoftarch.webgravir.hu/api/users");
   }, []);
+
+  const [search, setSearch] = useState("");
+  const handleSearchState = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+  const handleSearch = () => {
+    if (search) {
+      fetchUsers(
+        `https://szoftarch.webgravir.hu/api/users${"/search/" + search}`
+      );
+    } else {
+      fetchUsers(`https://szoftarch.webgravir.hu/api/users`);
+    }
+  };
   return (
     <div className="users-page-container">
       <BackButton linkTo={"/menu"} />
@@ -20,8 +34,15 @@ function UsersPage() {
           id="searchUser"
           className="km-input"
           placeholder="Ide irj nevet"
+          value={search}
+          onChange={handleSearchState}
         />
-        <button className="search-button km-button">Keresés</button>
+        <button
+          className="search-button km-button"
+          onClick={() => handleSearch()}
+        >
+          Keresés
+        </button>
       </div>
       {loading
         ? "Betöltés..."
