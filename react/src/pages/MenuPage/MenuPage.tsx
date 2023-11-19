@@ -16,7 +16,7 @@ function MenuPage() {
       <a className="km-button" href="/chat-contacts">
         Chat Kontaktok
       </a>
-      <a className="km-button" href="users">
+      <a className="km-button" href="/users">
         Felhasználók
       </a>
       <a className="km-button" href="/appointment-edit-list">
