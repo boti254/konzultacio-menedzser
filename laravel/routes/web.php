@@ -57,6 +57,7 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
     //meetings
     Route::get('/api/allmeetings', [MeetingController::class, "index"]);
     Route::get('/api/meetings/my-meetings/teacher/{all}', [MeetingController::class, "myMeetingsTeacher"]);
+    Route::get('/api/meetings/of-teacher/{id}/{all}', [MeetingController::class, "meetingsOfTeacher"]);
     Route::get('/api/meetings/my-meetings/student/{all}', [MeetingController::class, "myMeetingsStudent"]);
     Route::get('/api/meetings/meeting/{id}', [MeetingController::class, "getById"]);
     Route::post('/api/meetings/store/{id}', [MeetingController::class, "store"]);

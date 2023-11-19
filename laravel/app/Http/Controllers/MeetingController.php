@@ -49,6 +49,25 @@ class MeetingController extends Controller
         ], 403);
     }
 
+    public function meetingsOfTeacher($id, $all, Request $request) {
+        $user = User::find($request->uid);
+        if ($user) {
+            $teacher = User::find($id);
+            if ($teacher) {
+                if ($all){
+                    return Meeting::where('teacher_id', $id)->get();
+                }
+                return Meeting::where('teacher_id', $id)->where('date', '>=', Carbon::now())->get();
+            }
+            return response()->json([
+                'message' => 'Teacher not found'
+            ], 404);
+        }
+        return response()->json([
+            'message' => 'Please log in'
+        ], 403);
+    }
+
     public function myMeetingsStudent($all, Request $request){
         $user = User::find($request->uid);
         if ($user) {
