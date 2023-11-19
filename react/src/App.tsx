@@ -36,12 +36,12 @@ function App() {
             element={<AppointmentEditListPage />}
           />
           <Route
-            path="appointment-teacher-edit"
+            path="appointment-teacher-edit/:id"
             element={<AppointmentTeachertEditPage />}
           />
           <Route path="appointment-list" element={<AppointmentListPage />} />
           <Route
-            path="appointment-student-edit"
+            path="appointment-student-edit/:id"
             element={<AppointmentStudentEditPage />}
           />
         </Routes>

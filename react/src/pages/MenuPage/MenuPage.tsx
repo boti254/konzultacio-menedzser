@@ -5,7 +5,6 @@ function MenuPage() {
   const { name } = useParams();
   return (
     <div className="menu-container">
-
       {name ? <label className="km-label">{name}</label> : ""}
       <a className="km-button" href="/todo-student">
         TODO-Hallgató
@@ -24,12 +23,6 @@ function MenuPage() {
       </a>
       <a className="km-button" href="/appointment-list">
         Időpontra jelentkezés
-      </a>
-      <a className="km-button" href="/appointment-student-edit">
-        Konzultációs időpont szerkesztése-Hallgató
-      </a>
-      <a className="km-button" href="/appointment-teacher-edit">
-        Konzultációs időpont szerkesztése-Konzulens
       </a>
       <a className="km-button" href="/list-student">
         Hallgató lista
