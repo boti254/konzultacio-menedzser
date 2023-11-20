@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import BackButton from "../../components/BackButton/BackButton";
-import { useMeeting } from "../../hooks/useMeeting";
+import { useMeetings } from "../../hooks/useMeetings";
 import "./AppointmentEditListPage.css";
 
 function AppointmentEditListPage() {
-  const { data, loading, fetchMeetings } = useMeeting();
+  const { data, loading, fetchMeetings } = useMeetings();
 
   useEffect(() => {
     fetchMeetings(
