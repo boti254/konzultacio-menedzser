@@ -3,12 +3,17 @@ import BackButton from "../../components/BackButton/BackButton";
 import "./AppointmentStudentEditPage.css";
 import { useMeeting } from "../../hooks/useMeeting";
 import { useEffect, useState } from "react";
+import { useApplications } from "../../hooks/useApplications";
 
 function AppointmentStudentEditPage() {
-  //TODO
-  const data2 = ["NOTREALPelda Bela", "NOTREALPeldaJanos Fanos"];
   const { data, loading, fetchMeetingById, applyToMeeting } = useMeeting();
   const { id } = useParams();
+
+  const {
+    data: meetings,
+    loading: meetingsloading,
+    fetchMeetings,
+  } = useApplications();
 
   const [inputDate, setInputDate] = useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +34,9 @@ function AppointmentStudentEditPage() {
   useEffect(() => {
     fetchMeetingById(
       `https://szoftarch.webgravir.hu/api/meetings/meeting/${id}`
+    );
+    fetchMeetings(
+      `https://szoftarch.webgravir.hu/api/applications/meeting/${id}`
     );
   }, []);
   const handleApply = () => {
@@ -81,15 +89,15 @@ function AppointmentStudentEditPage() {
           </label>
         </div>
       </div>
-      {loading ? (
+      {meetingsloading ? (
         <div>Betöltés...</div>
       ) : (
-        data2?.map((participant) => (
+        meetings?.map((meeting) => (
           <div
             className="appointment-participant-list-container"
-            key={participant}
+            key={meeting.username}
           >
-            <div className="date-container">{participant}</div>
+            <div className="date-container">{meeting.username}</div>
           </div>
         ))
       )}
