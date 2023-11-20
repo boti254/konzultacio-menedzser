@@ -21,7 +21,6 @@ function ListTeacherPage() {
   //   setFilteredConsultants(filtered);
   // };
   const handleApply = (id: number) => {
-    console.log(id);
     applyToTeacher(
       `https://szoftarch.webgravir.hu/api/pairs/apply-to-teacher/${id}`
     );
