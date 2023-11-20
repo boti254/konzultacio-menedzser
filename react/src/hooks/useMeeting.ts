@@ -51,6 +51,37 @@ export function useMeeting() {
     }
   };
 
+  const updateMeeting = async (
+    url: string,
+    date: string,
+    location: string,
+    count: number
+  ) => {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          date: date,
+          location: location,
+          count: count,
+        }),
+      });
+      if (response.status !== 200 && response.status !== 201) {
+        navigate("/");
+      }
+      const result: Meeting = await response.json();
+      setData(result);
+    } catch {
+      /* empty */
+    } finally {
+      /* empty */
+    }
+  };
+
   useEffect(() => {
     setData(data);
   }, [data]);
@@ -62,5 +93,6 @@ export function useMeeting() {
     error,
     fetchMeetingById,
     applyToMeeting,
+    updateMeeting,
   };
 }
