@@ -38,6 +38,7 @@ Route::middleware([JwtAuthMiddleware::class])->group(function () {
 
     //users
     Route::get('/api/users', [UserController::class, "index"]);
+    Route::get('/api/users/me', [UserController::class, "getMe"]);
     Route::get('/api/users/search/{expr}', [UserController::class, "search"]);
     Route::get('/api/users/get/{id}', [UserController::class, "getById"]);
     Route::get('/api/users/teachers', [UserController::class, "getAllTeachers"]);

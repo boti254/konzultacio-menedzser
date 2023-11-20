@@ -19,6 +19,16 @@ class UserController extends Controller
         ], 403);
     }
 
+    public function getMe(Request $request) {
+        $user = User::find($request->uid);
+        if ($user) {
+            return $user;
+        }
+        return response()->json([
+            'message' => 'Please log in'
+        ], 403);
+    }
+
     public function search($expr, Request $request) {
         $user = User::find($request->uid);
         if ($user && $user->admin) {
