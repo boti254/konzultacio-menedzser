@@ -43,7 +43,14 @@ class ApplicationController extends Controller
                 if ($user->student || $user->teacher) {
                     $pair = Pair::where('student_id', $user->id)->where('teacher_id', $meeting->teacher_id)->first();
                     if ($pair || $user->id == $meeting->teacher_id) {
-                        return Application::where('meeting_id', $id)->get();
+                        $apps = Application::where('meeting_id', $id)->get();
+                        $apps_users = [];
+                        foreach ($apps as $app) {
+                            $app = $app->toArray();
+                            $app["username"] = User::find($app['student_id'])->name;
+                            $apps_users[] = $app;
+                        }
+                        return $apps_users;
                     }
                     return response()->json([
                         'message' => 'You are not a student of this teacher and this meeting is not yours'
