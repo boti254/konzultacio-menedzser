@@ -3,7 +3,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import { useUsers } from "../../hooks/useUsers";
 import "./AppointmentListPage.css";
 import { User } from "../../interfaces/Interfaces";
-import { useMeeting } from "../../hooks/useMeeting";
+import { useMeetings } from "../../hooks/useMeetings";
 
 function AppointmentListPage() {
   const [selectedTeacherId, setSelectedTeacher] = useState("");
@@ -13,7 +13,7 @@ function AppointmentListPage() {
     loading: meetingsLoading,
     fetchMeetings,
     setData: setMeetings,
-  } = useMeeting();
+  } = useMeetings();
   useEffect(() => {
     fetchUsers("https://szoftarch.webgravir.hu/api/users/teachers");
   }, []);

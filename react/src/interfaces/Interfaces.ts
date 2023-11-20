@@ -40,3 +40,20 @@ export interface Meeting {
   location: string;
   count: number;
 }
+
+export interface MeetingStudent {
+  id: number;
+  teacher_id: number;
+  date: string;
+  location: string;
+  count: number;
+  username: string;
+}
+
+export interface Application {
+  id: number;
+  meeting_id: number;
+  student_id: number;
+  accepted: number;
+  username: string;
+}
