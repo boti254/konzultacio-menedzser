@@ -27,9 +27,13 @@ function MenuPage() {
       ) : (
         ""
       )}
-      <a className="km-button" href="/chat-contacts">
-        Chat Kontaktok
-      </a>
+      {user?.student || user?.teacher ? (
+        <a className="km-button" href="/chat-contacts">
+          Chat Kontaktok
+        </a>
+      ) : (
+        ""
+      )}
       {user?.admin ? (
         <a className="km-button" href="/users">
           Felhasználók
