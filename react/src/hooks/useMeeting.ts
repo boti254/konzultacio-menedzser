@@ -82,6 +82,52 @@ export function useMeeting() {
     }
   };
 
+  const acceptApply = async (url: string) => {
+    try {
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      if (response.status !== 200) {
+        const { message }: { message: string } = await response.json();
+        alert(message);
+      } else {
+        alert("Elfogadva");
+      }
+      //const result: Meeting = await response.json();
+      //setData(result);
+    } catch {
+      setError(null);
+    } finally {
+      /* empty */
+    }
+  };
+
+  const deleteApply = async (url: string) => {
+    try {
+      const response = await fetch(url, {
+        method: "Delete",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      if (response.status !== 200) {
+        const { message }: { message: string } = await response.json();
+        alert(message);
+      }
+      //const result: Meeting = await response.json();
+      //setData(result);
+    } catch {
+      setError(null);
+    } finally {
+      /* empty */
+    }
+  };
+
   useEffect(() => {
     setData(data);
   }, [data]);
@@ -94,5 +140,7 @@ export function useMeeting() {
     fetchMeetingById,
     applyToMeeting,
     updateMeeting,
+    acceptApply,
+    deleteApply,
   };
 }

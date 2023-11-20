@@ -5,6 +5,7 @@ import { useMeeting } from "../../hooks/useMeeting";
 import { useEffect, useState } from "react";
 
 function AppointmentStudentEditPage() {
+  //TODO
   const data2 = ["NOTREALPelda Bela", "NOTREALPeldaJanos Fanos"];
   const { data, loading, fetchMeetingById, applyToMeeting } = useMeeting();
   const { id } = useParams();
@@ -37,7 +38,7 @@ function AppointmentStudentEditPage() {
   };
   return (
     <div className="appointment-student-edit-page-container">
-      <BackButton linkTo={"/menu"} />
+      <BackButton linkTo={"/appointment-list"} />
       <div className="appointment-page-header">
         <div className="header-title">
           <h1>Konzultáció jelentkezés</h1>

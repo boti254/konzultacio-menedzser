@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { MeetingStudent } from "../interfaces/Interfaces";
+import { Application } from "../interfaces/Interfaces";
 import { useNavigate } from "react-router-dom";
 
-export function useMeetings() {
-  const [data, setData] = useState<MeetingStudent[]>();
+export function useApplications() {
+  const [data, setData] = useState<Application[]>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -22,7 +22,7 @@ export function useMeetings() {
       if (response.status !== 200) {
         navigate("/");
       }
-      const result: MeetingStudent[] = await response.json();
+      const result: Application[] = await response.json();
       setData(result);
     } catch {
       setError(null);
