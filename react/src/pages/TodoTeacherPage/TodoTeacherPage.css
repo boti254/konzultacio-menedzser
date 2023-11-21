@@ -38,10 +38,14 @@
 }
 
 .todo-student-page-body {
-  background-color: var(--border-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--primary-color);
   width: 300px;
   padding: 10px;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .task-container {
@@ -49,6 +53,15 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  width: calc(100% - 10px);
+  border-radius: 10px;
+  background-color: aliceblue;
+  border: 1px solid var(--primary-light);
 }
 
 .task-name {
