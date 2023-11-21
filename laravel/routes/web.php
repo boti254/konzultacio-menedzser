@@ -9,6 +9,7 @@ use App\Http\Controllers\PairController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ChatMessageController;
+use App\Http\Controllers\MailController;
 use App\Http\Middleware\JwtAuthMiddleware;
 
 /*
@@ -26,6 +27,8 @@ Route::post('/api/login', [LoginController::class, "login"]);
 Route::get('/api/logout', [LoginController::class, "logout"]);
 
 Route::get('/api/test/{id}', [TestController::class, "index"]);
+
+Route::get('/api/mail', [MailController::class, 'send']);
 
 Route::middleware([JwtAuthMiddleware::class])->group(function () {
     //todos
