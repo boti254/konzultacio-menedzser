@@ -4,7 +4,7 @@ import "./AppointmentListPage.css";
 import { UserPair } from "../../interfaces/Interfaces";
 import { useMeetings } from "../../hooks/useMeetings";
 import { usePairs } from "../../hooks/usePairs";
-import { prettifyDate } from "../../helpers/helper";
+import { prettifyDateWithHour } from "../../helpers/helper";
 
 function AppointmentListPage() {
   const [selectedTeacherId, setSelectedTeacher] = useState("");
@@ -64,7 +64,9 @@ function AppointmentListPage() {
       ) : (
         meetings?.map((meeting) => (
           <div className="appointment-container" key={meeting.id}>
-            <div className="date-container">{prettifyDate(meeting.date)}</div>
+            <div className="date-container">
+              {prettifyDateWithHour(meeting.date)}
+            </div>
             <a
               className="icon-container km-icon-button-primary"
               href={`/appointment-student-edit/${meeting.id}`}

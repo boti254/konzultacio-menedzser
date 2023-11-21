@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useApplications } from "../../hooks/useApplications";
 
 function AppointmentStudentEditPage() {
-  const { data, loading, fetchMeetingById, applyToMeeting } = useMeeting();
+  const { data, fetchMeetingById, applyToMeeting } = useMeeting();
   const { id } = useParams();
 
   const {
@@ -14,6 +14,11 @@ function AppointmentStudentEditPage() {
     loading: meetingsloading,
     fetchMeetings,
   } = useApplications();
+
+  const [inputHour, setInputHour] = useState("");
+  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputHour(e.target.value);
+  };
 
   const [inputDate, setInputDate] = useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +39,8 @@ function AppointmentStudentEditPage() {
         ? 0
         : data.count - (meetings === undefined ? 0 : meetings.length);
     setCount(tempCount);
-    setInputDate(tempDate);
+    setInputDate(tempDate.split(" ")[0]);
+    setInputHour(tempDate.split(" ")[1]);
     setInputPlace(tempPlace);
   }, [data, meetings]);
 
@@ -72,7 +78,20 @@ function AppointmentStudentEditPage() {
           className="km-input"
           disabled={true}
           onChange={handleInputChange}
-          value={loading ? "" : inputDate.split(" ")[0]}
+          value={inputDate}
+        />
+      </div>
+      <div className="appointment-input-wrapper">
+        <label htmlFor="appointmentDate" className="km-label">
+          Óra:Perc
+        </label>
+        <input
+          type="time"
+          id="appointmentDate"
+          className="km-input"
+          onChange={handleHourChange}
+          value={inputHour}
+          disabled
         />
       </div>
       <div className="appointment-input-wrapper">
@@ -86,7 +105,7 @@ function AppointmentStudentEditPage() {
           placeholder="Helyszín"
           disabled={true}
           onChange={handlePlaceChange}
-          value={loading ? "" : inputPlace.split(" ")[0]}
+          value={inputPlace}
         />
       </div>
       <div className="appointment-input-wrapper">
