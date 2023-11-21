@@ -60,6 +60,14 @@ function UsersPage() {
               </a>
             </div>
           ))}
+      <div>
+        <a
+          className="icon-container km-icon-button-primary"
+          href={`/user-edit/0`}
+        >
+          +
+        </a>
+      </div>
     </div>
   );
 }
