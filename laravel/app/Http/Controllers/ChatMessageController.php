@@ -39,11 +39,11 @@ class ChatMessageController extends Controller
             if( Pair::where('student_id', $user->id)->where('teacher_id', $uid)->first() ||
                 Pair::where('student_id', $uid)->where('teacher_id', $user->id)->first()
                 ) {
-                return ChatMessage::where(function($query) use ($uid, $user) {
-                    $query->where('from_user_id', $uid)->where('to_user_id', $user->id);
-                })->orWhere(function($query) use ($uid, $user) {
-                    $query->where('to_user_id', $user->id)->where('from_user_id', $uid);
-                })->get();
+
+                $from = ChatMessage::where('from_user_id', $uid)->where('to_user_id', $user->id)->get()->toArray();
+                $to = ChatMessage::where('to_user_id', $user->id)->where('from_user_id', $uid)->get()->toArray();
+
+                return (array_merge($from, $to));
             }
             return response()->json([
                 'message' => 'You are not in contact with this person'
