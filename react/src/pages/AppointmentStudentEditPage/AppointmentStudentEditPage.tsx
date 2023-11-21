@@ -24,12 +24,19 @@ function AppointmentStudentEditPage() {
     setInputPlace(e.target.value);
   };
 
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
     const tempDate = data === undefined ? "" : data.date;
     const tempPlace = data === undefined ? "" : data.location;
+    const tempCount =
+      data === undefined
+        ? 0
+        : data.count - (meetings === undefined ? 0 : meetings.length);
+    setCount(tempCount);
     setInputDate(tempDate);
     setInputPlace(tempPlace);
-  }, [data]);
+  }, [data, meetings]);
 
   useEffect(() => {
     fetchMeetingById(
@@ -42,6 +49,9 @@ function AppointmentStudentEditPage() {
   const handleApply = () => {
     applyToMeeting(
       `https://szoftarch.webgravir.hu/api/applications/apply-to/${id}`
+    );
+    fetchMeetings(
+      `https://szoftarch.webgravir.hu/api/applications/meeting/${id}`
     );
   };
   return (
@@ -85,7 +95,7 @@ function AppointmentStudentEditPage() {
         </label>
         <div className="appointment-participant-container">
           <label htmlFor="appointmentParticipant" className="km-label">
-            {data?.count}
+            {count}
           </label>
         </div>
       </div>

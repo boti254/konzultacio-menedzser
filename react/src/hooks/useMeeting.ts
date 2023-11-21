@@ -43,6 +43,8 @@ export function useMeeting() {
       if (response.status !== 200 && response.status !== 201) {
         const { message }: { message: string } = await response.json();
         alert(message);
+      } else {
+        alert("Sikeres jelentkezes");
       }
     } catch {
       setError(null);
