@@ -11,11 +11,11 @@
     <br><br>
 
     Hamarosan lejár egy vagy több feladatod határideje, kérlek jelentkezz be és nézd meg őket.
-    <a href="https://szoftarch.webgravir.hu" style="padding: 10px; border-radius: 5px; background-color: rgb(108, 192, 108);">Konzultáció Menedzser</a>
-    <br><br>
+  <br><br><br>
+    <a href="https://szoftarch.webgravir.hu" style="text-decoraton:none; color: white; padding: 15px; border-radius: 8px; background-color: rgb(108, 192, 108);">Konzultáció Menedzser</a>
+    <br><br><br>
 
     KM
 </body>
 </html>
-
 
