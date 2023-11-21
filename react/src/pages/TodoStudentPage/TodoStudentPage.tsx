@@ -12,7 +12,7 @@ function TodoStudentPage() {
   }, []);
 
   const newStyle = {
-    color: "green",
+    color: "var(--primary-color)",
   };
   return (
     <div className="todo-student-page-container">
