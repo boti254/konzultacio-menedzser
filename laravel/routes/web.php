@@ -11,6 +11,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ChatMessageController;
 use App\Http\Controllers\MailController;
 use App\Http\Middleware\JwtAuthMiddleware;
+use App\Http\Middleware\RestrictByDomain;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::get('/api/logout', [LoginController::class, "logout"]);
 Route::get('/api/test/{id}', [TestController::class, "index"]);
 
 
-Route::middleware('RestrictByDomain')->group(function () {
+Route::middleware([RestrictByDomain::class])->group(function () {
     Route::get('/api/mail', [MailController::class, 'send']);
 });
 
