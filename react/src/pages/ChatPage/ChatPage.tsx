@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./ChatPage.css";
 import BackButton from "../../components/BackButton/BackButton";
 import { useParams } from "react-router-dom";
@@ -14,6 +14,8 @@ function ChatPage() {
   const { data, loading, fetchMessages, sendMessage } = useMessages();
   const { id } = useParams();
 
+  const myDivRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     fetchMessages(
       `https://szoftarch.webgravir.hu/api/chat/messages-from/${id}`
@@ -23,6 +25,9 @@ function ChatPage() {
   useEffect(() => {
     // Function to be executed every 5 seconds
     const fetchData = () => {
+      if (myDivRef.current) {
+        myDivRef.current.scrollTop = myDivRef.current.scrollHeight;
+      }
       fetchMessages(
         `https://szoftarch.webgravir.hu/api/chat/messages-from/${id}`
       );
@@ -45,7 +50,7 @@ function ChatPage() {
   return (
     <div className="chat-container">
       <BackButton linkTo={"/chat-contacts"} />
-      <div className="chat-messages">
+      <div ref={myDivRef} className="chat-messages">
         {data?.map((message, index) => (
           <div
             key={index}
