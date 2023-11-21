@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import { useMeetings } from "../../hooks/useMeetings";
 import "./AppointmentEditListPage.css";
+import { prettifyDate } from "../../helpers/helper";
 
 function AppointmentEditListPage() {
   const { data, loading, fetchMeetings } = useMeetings();
@@ -25,7 +26,9 @@ function AppointmentEditListPage() {
       ) : (
         data?.map((appointment) => (
           <div className="appointment-container" key={appointment.id}>
-            <div className="date-container">{appointment.date}</div>
+            <div className="date-container">
+              {prettifyDate(appointment.date)}
+            </div>
             <a
               className="icon-container km-icon-button-primary"
               href={`/appointment-teacher-edit/${appointment.id}`}
