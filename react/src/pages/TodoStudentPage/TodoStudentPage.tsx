@@ -3,6 +3,7 @@ import { TodoTask } from "../../interfaces/Interfaces";
 import BackButton from "../../components/BackButton/BackButton";
 import { useTodos } from "../../hooks/useTodos";
 import { useEffect } from "react";
+import { prettifyDate } from "../../helpers/helper";
 
 function TodoStudentPage() {
   const { data, loading, fetchData } = useTodos();
@@ -33,7 +34,7 @@ function TodoStudentPage() {
               key={feladat.id}
             >
               <div className="task-half">{feladat.title}</div>
-              <div className="task-half">{feladat.due}</div>
+              <div className="task-half">{prettifyDate(feladat.due)}</div>
             </div>
           ))
         )}

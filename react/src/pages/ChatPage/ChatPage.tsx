@@ -3,6 +3,7 @@ import "./ChatPage.css";
 import BackButton from "../../components/BackButton/BackButton";
 import { useParams } from "react-router-dom";
 import { useMessages } from "../../hooks/useMessages";
+import { prettifyDateWithHour } from "../../helpers/helper";
 
 function ChatPage() {
   const [newMessage, setNewMessage] = useState<string>("");
@@ -58,7 +59,9 @@ function ChatPage() {
                 : "message"
             }
           >
-            <span className="timestamp">{message.created_at}</span>
+            <span className="timestamp">
+              {prettifyDateWithHour(message.created_at)}
+            </span>
             <p>{message.message}</p>
           </div>
         ))}

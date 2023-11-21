@@ -4,6 +4,7 @@ import { TodoTask, UserPair } from "../../interfaces/Interfaces";
 import { useEffect, useState } from "react";
 import { useTodos } from "../../hooks/useTodos";
 import { usePairs } from "../../hooks/usePairs";
+import { prettifyDate } from "../../helpers/helper";
 
 function TodoTeacherPage() {
   const [selectedStudentId, setSelectedStudent] = useState("");
@@ -126,7 +127,7 @@ function TodoTeacherPage() {
               key={feladat.id}
             >
               <div className="task-name">{feladat.title}</div>
-              <div className="task-due">{feladat.due}</div>
+              <div className="task-due">{prettifyDate(feladat.due)}</div>
               <button
                 className="task-edit km-icon-button-primary"
                 onClick={() => {
