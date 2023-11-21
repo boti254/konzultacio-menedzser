@@ -1,21 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./ListStudentPage.css";
 import BackButton from "../../components/BackButton/BackButton";
 import { usePairs } from "../../hooks/usePairs";
+import { UserPair } from "../../interfaces/Interfaces";
 
 function ListStudentPage() {
-  // const [searchTerm, setSearchTerm] = useState<string>("");
-  // const [filteredStudents, setFilteredStudents] = useState(mockStudents);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filteredStudents, setFilteredStudents] = useState<UserPair[]>();
 
-  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const term = e.target.value.toLowerCase();
-  //   setSearchTerm(term);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
 
-  //   const filtered = mockStudents.filter((student) =>
-  //     student.name.toLowerCase().includes(term)
-  //   );
-  //   setFilteredStudents(filtered);
-  // };
+    const filtered = data?.filter((user) =>
+      user.user.name.toLowerCase().includes(term)
+    );
+    setFilteredStudents(filtered);
+  };
 
   const { data, loading, fetchStudents, acceptStudent, deleteStudent } =
     usePairs();
@@ -31,6 +32,10 @@ function ListStudentPage() {
   };
 
   useEffect(() => {
+    setFilteredStudents(data);
+  }, [data]);
+
+  useEffect(() => {
     fetchStudents("https://szoftarch.webgravir.hu/api/pairs/my-students");
   }, []);
 
@@ -42,8 +47,8 @@ function ListStudentPage() {
         <input
           type="text"
           placeholder="Hallgató keresése"
-          // value={searchTerm}
-          // onChange={handleSearch}
+          value={searchTerm}
+          onChange={handleSearch}
           className="km-input"
         />
       </div>
@@ -52,7 +57,7 @@ function ListStudentPage() {
         <ul>
           {loading
             ? "Betöltés..."
-            : data?.map((student) => (
+            : filteredStudents?.map((student) => (
                 <li key={student.user.id}>
                   <span>{student.user.name}</span>
                   {student.pair.accepted ? (
