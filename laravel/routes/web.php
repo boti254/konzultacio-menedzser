@@ -30,7 +30,7 @@ Route::get('/api/logout', [LoginController::class, "logout"]);
 Route::get('/api/test/{id}', [TestController::class, "index"]);
 
 Route::middleware([RestrictByDomain::class])->group(function () {
-    Route::get('/api/mail', [MailController::class, 'send']);
+    Route::get('/api/mail/{key}', [MailController::class, 'send']);
 });
 
 

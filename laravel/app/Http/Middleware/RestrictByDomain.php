@@ -9,7 +9,8 @@ class RestrictByDomain
     public function handle($request, Closure $next)
     {
         // Check if the request originated from the allowed domain
-        if ($request->getHost() !== 'szoftarch.webgravir.hu') {
+        $key = $request->route('key');
+        if ($key != env("MAIL_KEY")) {
             return response('Unauthorized.', 401);
         }
 

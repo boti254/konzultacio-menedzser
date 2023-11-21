@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    public function send() {
+    public function send($key) {
         echo 'Starting<br>';
         $todos = Todo::where('due', '<', date("Y-m-d H:i:s", strtotime('+1 day')))->where('due', '>', date("Y-m-d H:i:s", strtotime('now')))->where('done', false)->get();
         $users = [];
