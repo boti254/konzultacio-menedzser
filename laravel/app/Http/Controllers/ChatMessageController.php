@@ -44,7 +44,7 @@ class ChatMessageController extends Controller
                     $query->where('from_user_id', $uid)->where('to_user_id', $user->id);
                 })->orWhere(function($query) use ($uid, $user) {
                     $query->where('from_user_id', $user->id)->where('to_user_id', $uid);
-                })->get();
+                })->orderBy('id')->get();
             }
             return response()->json([
                 'message' => 'You are not in contact with this person'
