@@ -6,14 +6,8 @@ import { useEffect, useState } from "react";
 import { useApplications } from "../../hooks/useApplications";
 
 function AppointmentTeachertEditPage() {
-  const {
-    data,
-    loading,
-    fetchMeetingById,
-    updateMeeting,
-    acceptApply,
-    deleteApply,
-  } = useMeeting();
+  const { data, fetchMeetingById, updateMeeting, acceptApply, deleteApply } =
+    useMeeting();
   const {
     data: meetings,
     loading: meetingsloading,
@@ -23,8 +17,12 @@ function AppointmentTeachertEditPage() {
   const { id } = useParams();
 
   const [inputDate, setInputDate] = useState("");
+  const [inputHour, setInputHour] = useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputDate(e.target.value);
+  };
+  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputHour(e.target.value);
   };
   const [inputPlace, setInputPlace] = useState("");
   const handlePlaceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +75,8 @@ function AppointmentTeachertEditPage() {
     const tempPlace = data === undefined ? "" : data.location;
     const tempCount = data === undefined ? "" : data.count;
     setCount(Number(tempCount));
-    setInputDate(tempDate);
+    setInputDate(tempDate.split(" ")[0]);
+    setInputHour(tempDate.split(" ")[1]);
     setInputPlace(tempPlace);
   }, [data]);
 
@@ -109,9 +108,19 @@ function AppointmentTeachertEditPage() {
           id="appointmentDate"
           className="km-input"
           onChange={handleInputChange}
-          value={
-            loading || inputDate === undefined ? "" : inputDate.split(" ")[0]
-          }
+          value={inputDate}
+        />
+      </div>
+      <div className="appointment-input-wrapper">
+        <label htmlFor="appointmentDate" className="km-label">
+          Óra:Perc
+        </label>
+        <input
+          type="time"
+          id="appointmentDate"
+          className="km-input"
+          onChange={handleHourChange}
+          value={inputHour}
         />
       </div>
       <div className="appointment-input-wrapper">
@@ -124,9 +133,7 @@ function AppointmentTeachertEditPage() {
           className="km-input"
           placeholder="Helyszín"
           onChange={handlePlaceChange}
-          value={
-            loading || inputDate === undefined ? "" : inputPlace.split(" ")[0]
-          }
+          value={inputPlace}
         />
       </div>
       <div className="appointment-input-wrapper">
@@ -183,7 +190,9 @@ function AppointmentTeachertEditPage() {
       )}
       <button
         className="save-btn km-button"
-        onClick={() => handleUpdate(inputDate, inputPlace, count)}
+        onClick={() =>
+          handleUpdate(inputDate + " " + inputHour + ":00", inputPlace, count)
+        }
       >
         Mentés
       </button>
