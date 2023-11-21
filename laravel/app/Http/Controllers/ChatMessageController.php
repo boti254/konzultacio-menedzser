@@ -66,7 +66,7 @@ class ChatMessageController extends Controller
                     return ChatMessage::where(function($query) use ($uid, $user, $last_id) {
                         $query->where('from_user_id', $uid)->where('to_user_id', $user->id)->where('id', '>', $last_id);
                     })->orWhere(function($query) use ($uid, $user, $last_id) {
-                        $query->where('to_user_id', $user->id)->where('from_user_id', $uid)->where('id', '>', $last_id);
+                        $query->where('from_user_id', $user->id)->where('to_user_id', $uid)->where('id', '>', $last_id);
                     })->get();
                 }
                 return response()->json([
