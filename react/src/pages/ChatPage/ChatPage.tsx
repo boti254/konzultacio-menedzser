@@ -11,7 +11,7 @@ function ChatPage() {
     setNewMessage(event.target.value);
   };
 
-  const { data, loading, fetchMessages, sendMessage } = useMessages();
+  const { data, fetchMessages, sendMessage } = useMessages();
   const { id } = useParams();
 
   const myDivRef = useRef<HTMLDivElement | null>(null);
@@ -45,6 +45,7 @@ function ChatPage() {
       `https://szoftarch.webgravir.hu/api/chat/send-to/${id}`,
       newMessage
     );
+    setNewMessage("");
   };
 
   return (
