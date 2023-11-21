@@ -23,7 +23,6 @@ function ChatPage() {
   }, []);
 
   useEffect(() => {
-    // Function to be executed every 5 seconds
     const fetchData = () => {
       if (myDivRef.current) {
         myDivRef.current.scrollTop = myDivRef.current.scrollHeight;
@@ -33,12 +32,10 @@ function ChatPage() {
       );
     };
 
-    // Set up an interval to call the function every 5 seconds
     const intervalId = setInterval(fetchData, 5000);
 
-    // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
-  }, []); // The empty dependency array ensures that the effect runs once on mount
+  }, []);
 
   const handleSend = () => {
     sendMessage(
