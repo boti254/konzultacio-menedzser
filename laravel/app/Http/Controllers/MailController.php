@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
 {
     public function send() {
+        echo 'Starting<br>';
         $todos = Todo::where('due', '>', date(strtotime('-1 day')));
+        var_dump($todos);
         $users = [];
 
         foreach ($todos as $todo) {
