@@ -20,8 +20,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   height: calc(100% - 20% - 70px);
   overflow-y: scroll;
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.message {
+  width: 280px;
+  border-top: 1px solid var(--border-color);
+  padding: 5px;
 }
 
 .from-style {

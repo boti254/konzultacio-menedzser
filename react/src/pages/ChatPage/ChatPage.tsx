@@ -49,7 +49,11 @@ function ChatPage() {
         {data?.map((message, index) => (
           <div
             key={index}
-            className={message.from_user_id === Number(id) ? "from-style" : ""}
+            className={
+              message.from_user_id === Number(id)
+                ? "from-style message"
+                : "message"
+            }
           >
             <span className="timestamp">{message.created_at}</span>
             <p>{message.message}</p>
