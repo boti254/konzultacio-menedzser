@@ -82,7 +82,7 @@ function TodoTeacherPage() {
   };
 
   const newStyle = {
-    color: "var(--success-color)",
+    color: "var(--primary-color)",
   };
   return (
     <div className="todo-student-page-container">

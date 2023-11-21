@@ -14,6 +14,10 @@
   --border-color: #79747e;
 }
 
+body {
+  font-family: Roboto;
+}
+
 /* buttons */
 
 .km-button {
