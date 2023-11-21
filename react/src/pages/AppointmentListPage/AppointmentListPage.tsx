@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
-import { useUsers } from "../../hooks/useUsers";
 import "./AppointmentListPage.css";
-import { User } from "../../interfaces/Interfaces";
+import { UserPair } from "../../interfaces/Interfaces";
 import { useMeetings } from "../../hooks/useMeetings";
+import { usePairs } from "../../hooks/usePairs";
 
 function AppointmentListPage() {
   const [selectedTeacherId, setSelectedTeacher] = useState("");
-  const { data, loading, fetchUsers } = useUsers();
+  const { data, loading, fetchStudents } = usePairs();
   const {
     data: meetings,
     loading: meetingsLoading,
@@ -15,7 +15,7 @@ function AppointmentListPage() {
     setData: setMeetings,
   } = useMeetings();
   useEffect(() => {
-    fetchUsers("https://szoftarch.webgravir.hu/api/users/teachers");
+    fetchStudents("https://szoftarch.webgravir.hu/api/pairs/my-teachers");
   }, []);
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -49,9 +49,9 @@ function AppointmentListPage() {
             {loading ? (
               <option>Betöltés...</option>
             ) : (
-              data?.map((teacher: User) => (
-                <option key={teacher.id} value={teacher.id}>
-                  {teacher.name} - {teacher.neptun}
+              data?.map((teacher: UserPair) => (
+                <option key={teacher.pair.id} value={teacher.user.id}>
+                  {teacher.user.name} - {teacher.user.neptun}
                 </option>
               ))
             )}
