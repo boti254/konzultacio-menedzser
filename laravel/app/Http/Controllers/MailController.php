@@ -14,17 +14,15 @@ class MailController extends Controller
         echo 'Starting<br>';
         $todos = Todo::where('due', '>', date(strtotime('-1 day')))->get();
         $users = [];
-        var_dump($todos);
 
         foreach ($todos as $todo) {
             try {
-                $user[strval($todo->student_id)] = User::find($todo->student_id);
+                $users[$todo->student_id] = User::find($todo->student_id);
             }
             catch(Exception $e){
                 //
             }
         }
-        var_dump($users);
         foreach ($users as $user) {
             $data = array('username' => $user->name);
         Mail::send(['text' => 'email'], $data, function($message) use ($user) {
