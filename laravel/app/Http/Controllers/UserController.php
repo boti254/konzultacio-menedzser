@@ -90,20 +90,30 @@ class UserController extends Controller
         $user = User::find($request->uid);
         if ($user && $user->admin) {
             $new_user = null;
-            $req_array = [
-                'name' => $request->name,
-                'email' => $request->email,
-                //'password' => Hash::make($request->password),
-                'neptun' => $request->neptun,
-                'student' => $request->student,
-                'teacher' => $request->teacher,
-                'admin' => $request->admin,
-            ];
+
 
             if ($request->id == 0) {
+                $req_array = [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'neptun' => $request->neptun,
+                    'student' => $request->student,
+                    'teacher' => $request->teacher,
+                    'admin' => $request->admin,
+                ];
                 $new_user = User::create($req_array);
             }
             else {
+                $req_array = [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    //'password' => Hash::make($request->password),
+                    'neptun' => $request->neptun,
+                    'student' => $request->student,
+                    'teacher' => $request->teacher,
+                    'admin' => $request->admin,
+                ];
                 if ($request->id != $request->uid){
                     $user_to_mod = User::find($request->id);
                     if ($user_to_mod){
