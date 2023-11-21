@@ -1,25 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./ListTeacherPage.css";
 import BackButton from "../../components/BackButton/BackButton";
 import { usePairs } from "../../hooks/usePairs";
 import { useUsers } from "../../hooks/useUsers";
+import { User } from "../../interfaces/Interfaces";
 
 function ListTeacherPage() {
-  // const [searchTerm, setSearchTerm] = useState<string>("");
-  // const [filteredConsultants, setFilteredConsultants] =
-  //   useState(mockConsultants);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filteredConsultants, setFilteredConsultants] = useState<User[]>();
 
   const { applyToTeacher } = usePairs();
 
-  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const term = e.target.value.toLowerCase();
-  //   setSearchTerm(term);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
 
-  //   const filtered = mockConsultants.filter((consultant) =>
-  //     consultant.name.toLowerCase().includes(term)
-  //   );
-  //   setFilteredConsultants(filtered);
-  // };
+    const filtered = data?.filter((user) =>
+      user.name.toLowerCase().includes(term)
+    );
+    setFilteredConsultants(filtered);
+  };
   const handleApply = (id: number) => {
     applyToTeacher(
       `https://szoftarch.webgravir.hu/api/pairs/apply-to-teacher/${id}`
@@ -27,6 +27,10 @@ function ListTeacherPage() {
   };
 
   const { data, loading, fetchUsers } = useUsers();
+
+  useEffect(() => {
+    setFilteredConsultants(data);
+  }, [data]);
 
   useEffect(() => {
     fetchUsers("https://szoftarch.webgravir.hu/api/users/teachers");
@@ -41,8 +45,8 @@ function ListTeacherPage() {
           type="text"
           className="km-input"
           placeholder="Konzulens keresése"
-          //value={searchTerm}
-          // onChange={handleSearch}
+          value={searchTerm}
+          onChange={handleSearch}
         />
       </div>
       <div className="consultant-list">
@@ -50,7 +54,7 @@ function ListTeacherPage() {
         <ul>
           {loading
             ? "Betöltés..."
-            : data?.map((consultant) => (
+            : filteredConsultants?.map((consultant) => (
                 <li key={consultant.id}>
                   <span>
                     {consultant.name} - {consultant.neptun}
