@@ -13,7 +13,6 @@ class MailController extends Controller
     public function send() {
         echo 'Starting<br>';
         $todos = Todo::where('due', '>', date(strtotime('-1 day')));
-        var_dump($todos);
         $users = [];
 
         foreach ($todos as $todo) {
@@ -24,7 +23,7 @@ class MailController extends Controller
                 //
             }
         }
-
+        var_dump($users);
         foreach ($users as $user) {
             $data = array('username' => $user->name);
         Mail::send(['text' => 'email'], $data, function($message) use ($user) {
