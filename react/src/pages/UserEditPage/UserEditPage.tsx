@@ -7,7 +7,7 @@ import { User } from "../../interfaces/Interfaces";
 
 function UserEditPage() {
   const { id } = useParams();
-  const { fetchUser, user, updateUser } = useUser();
+  const { fetchUser, user, updateUser, createUser } = useUser();
 
   const [checkedState, setCheckedState] = useState<User>({
     id: NaN,
@@ -37,19 +37,34 @@ function UserEditPage() {
   };
 
   const handleSave = () => {
-    updateUser(
-      checkedState.name,
-      checkedState.email,
-      checkedState.neptun,
-      checkedState.student,
-      checkedState.teacher,
-      checkedState.admin,
-      `https://szoftarch.webgravir.hu/api/users/store/${user?.id}`
-    );
+    if (id !== "0") {
+      updateUser(
+        checkedState.name,
+        checkedState.email,
+        checkedState.neptun,
+        checkedState.student,
+        checkedState.teacher,
+        checkedState.admin,
+        `https://szoftarch.webgravir.hu/api/users/store/${user?.id}`
+      );
+    } else {
+      createUser(
+        checkedState.name,
+        checkedState.email,
+        checkedState.neptun,
+        Boolean(checkedState.student),
+        Boolean(checkedState.teacher),
+        Boolean(checkedState.admin),
+        `https://szoftarch.webgravir.hu/api/users/store/0`,
+        true
+      );
+    }
   };
 
   useEffect(() => {
-    fetchUser(`https://szoftarch.webgravir.hu/api/users/get/${id}`);
+    if (id !== "0") {
+      fetchUser(`https://szoftarch.webgravir.hu/api/users/get/${id}`);
+    }
   }, []);
 
   useEffect(() => {

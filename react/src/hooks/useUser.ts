@@ -68,6 +68,48 @@ export function useUser() {
     }
   };
 
+  const createUser = async (
+    name: string,
+    email: string,
+    neptun: string,
+    student: boolean,
+    teacher: boolean,
+    admin: boolean,
+    url: string,
+    isnew: boolean
+  ) => {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          neptun: neptun,
+          student: student,
+          teacher: teacher,
+          admin: admin,
+          password: "b",
+        }),
+      });
+      if (response.status !== 200 && response.status !== 201) {
+        navigate("/");
+      }
+      const result: User = await response.json();
+      setUser(result);
+      if (isnew) {
+        navigate(`/user-edit/${result.id}`);
+      }
+    } catch {
+      /* empty */
+    } finally {
+      /* empty */
+    }
+  };
+
   useEffect(() => {
     setUser(user);
   }, [user]);
@@ -76,6 +118,7 @@ export function useUser() {
     loading,
     error,
     user,
+    createUser,
     fetchUser,
     updateUser,
   };
