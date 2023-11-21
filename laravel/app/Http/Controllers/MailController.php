@@ -24,7 +24,7 @@ class MailController extends Controller
         }
         foreach ($users as $user) {
             $data = array('username' => $user->name);
-        Mail::send(['text' => 'email'], $data, function($message) use ($user) {
+        Mail::send('email', $data, function($message) use ($user) {
             $message->to($user->email)->subject('Feladat Emlékeztető');
             $message->from('info@szoftarch.webgravir.hu' , 'Konzultáció Menedzser');
         });
