@@ -12,9 +12,9 @@ class MailController extends Controller
 {
     public function send() {
         echo 'Starting<br>';
-        $todos = Todo::where('due', '<', date(strtotime('+1 day')))->where('due', '>', date(strtotime('now')))->get();
+        $todos = Todo::where('due', '<', date("Y-m-d H:i:s", strtotime('+1 day')))->where('due', '>', date("Y-m-d H:i:s", strtotime('now')))->where('done', false)->get();
         $users = [];
-
+        return $todos;
         foreach ($todos as $todo) {
             try {
                 $users[$todo->student_id] = User::find($todo->student_id);
