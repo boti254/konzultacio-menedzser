@@ -14,6 +14,7 @@ class MailController extends Controller
         echo 'Starting<br>';
         $todos = Todo::where('due', '>', date(strtotime('-1 day')))->get();
         $users = [];
+        var_dump($todos);
 
         foreach ($todos as $todo) {
             try {
