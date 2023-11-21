@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
 {
     public function send() {
-        $data = array('name' => "Joi die");
+        $data = array('username' => "Zsombi");
         Mail::send(['text' => 'email'], $data, function($message) {
             $message->to('arvaizsombor@gmail.com')->subject('Emlékeztető');
             $message->from('info@szoftarch.webgravir.hu' , 'Konzultáció Menedzser');
