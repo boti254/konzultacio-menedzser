@@ -31,6 +31,27 @@ export function useUsers() {
     }
   };
 
+  const deleteUser = async (url: string, id: number) => {
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.status !== 200) {
+        alert("Cannot delete user.");
+      }
+      const updatedData = data?.filter((item) => item.id !== id);
+      setData(updatedData);
+    } catch {
+      /* empty */
+    } finally {
+      /* empty */
+    }
+  };
+
   useEffect(() => {
     setData(data);
   }, [data]);
@@ -41,5 +62,6 @@ export function useUsers() {
     loading,
     error,
     fetchUsers,
+    deleteUser,
   };
 }

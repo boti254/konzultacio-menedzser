@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { User } from "../interfaces/Interfaces";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 export function useUser() {
   const [user, setUser] = useState<User>();
@@ -111,19 +110,6 @@ export function useUser() {
     }
   };
 
-  const deleteUser = async (url: string) => {
-    try {
-      await axios.delete(url);
-      navigate('/users');
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        console.error('Axios error:', error.message);
-      } else {
-        console.error('Unknown error:', error);
-      }
-    }
-  }
-
   useEffect(() => {
     setUser(user);
   }, [user]);
@@ -135,6 +121,5 @@ export function useUser() {
     createUser,
     fetchUser,
     updateUser,
-    deleteUser,
   };
 }

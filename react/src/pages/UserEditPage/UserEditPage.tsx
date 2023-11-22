@@ -4,11 +4,10 @@ import "./UserEditPage.css";
 import { useUser } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
 import { User } from "../../interfaces/Interfaces";
-import axios from 'axios';
 
 function UserEditPage() {
   const { id } = useParams();
-  const { fetchUser, user, updateUser, createUser, deleteUser } = useUser();
+  const { fetchUser, user, updateUser, createUser } = useUser();
 
   const [checkedState, setCheckedState] = useState<User>({
     id: NaN,
@@ -59,12 +58,6 @@ function UserEditPage() {
         `https://szoftarch.webgravir.hu/api/users/store/0`,
         true
       );
-    }
-  };
-
-  const handleDelete = () => {
-    if (id !== "0") {
-      deleteUser(`https://szoftarch.webgravir.hu/api/users/store/${user?.id}`);
     }
   };
 
@@ -162,9 +155,6 @@ function UserEditPage() {
       </div>
       <button className="save-btn km-button" onClick={handleSave}>
         Mentés
-      </button>
-      <button className="save-btn km-button-error" onClick={handleDelete}>
-        Törlés
       </button>
     </div>
   );

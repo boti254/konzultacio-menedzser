@@ -4,7 +4,7 @@ import "./UsersPage.css";
 import { useUsers } from "../../hooks/useUsers";
 
 function UsersPage() {
-  const { data, loading, fetchUsers } = useUsers();
+  const { data, loading, fetchUsers, deleteUser } = useUsers();
   useEffect(() => {
     fetchUsers("https://szoftarch.webgravir.hu/api/users");
   }, []);
@@ -22,6 +22,14 @@ function UsersPage() {
       fetchUsers(`https://szoftarch.webgravir.hu/api/users`);
     }
   };
+
+  const handleDelete = (id: number) => {
+    deleteUser(
+      `https://szoftarch.webgravir.hu/api/users/delete/${id}`,
+      id
+    );
+  };
+
   return (
     <div className="users-page-container">
       <BackButton linkTo={"/menu"} />
@@ -52,6 +60,11 @@ function UsersPage() {
               <div className="name-container">
                 {user.name} - {user.neptun}
               </div>
+              <a
+                className="icon-container km-icon-button-error" onClick={() => handleDelete(user.id)}
+              >
+                T
+              </a>
               <a
                 className="icon-container km-icon-button-primary"
                 href={`/user-edit/${user.id}`}
