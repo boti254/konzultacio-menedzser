@@ -26,6 +26,7 @@
   border: 1px solid var(--primary-color);
   padding: 10px;
   border-radius: 10px;
+  min-width: 300px;
 }
 
 .message {

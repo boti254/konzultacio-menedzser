@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 import { useTodos } from "../../hooks/useTodos";
 import { usePairs } from "../../hooks/usePairs";
 import { prettifyDate } from "../../helpers/helper";
+import UserEditIcon from "../../assets/edit.svg";
+import UserDoneIcon from "../../assets/done.svg";
+import UserDeleteIcon from "../../assets/trash.svg";
 
 function TodoTeacherPage() {
   const [selectedStudentId, setSelectedStudent] = useState("");
@@ -129,7 +132,7 @@ function TodoTeacherPage() {
               <div className="task-name">{feladat.title}</div>
               <div className="task-due">{prettifyDate(feladat.due)}</div>
               <button
-                className="task-edit km-icon-button-primary"
+                className="task-edit km-icon-button-primary icon-container"
                 onClick={() => {
                   handleUpdate(
                     feladat.id,
@@ -140,10 +143,10 @@ function TodoTeacherPage() {
                   );
                 }}
               >
-                M
+                <img src={UserEditIcon} alt="User Edit Icon" />
               </button>
               <button
-                className="task-done km-icon-button-success"
+                className="task-done km-icon-button-success icon-container"
                 onClick={() => {
                   handleUpdate(
                     feladat.id,
@@ -154,15 +157,15 @@ function TodoTeacherPage() {
                   );
                 }}
               >
-                K
+                <img src={UserDoneIcon} alt="User Done Icon" />
               </button>
               <button
-                className="task-delete km-icon-button-error"
+                className="task-delete km-icon-button-error icon-container"
                 onClick={() => {
                   handleDelete(feladat.id);
                 }}
               >
-                T
+                <img src={UserDeleteIcon} alt="User Delete Icon" />
               </button>
             </div>
           ))

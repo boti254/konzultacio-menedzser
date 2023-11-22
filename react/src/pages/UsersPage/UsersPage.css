@@ -27,10 +27,14 @@
 }
 
 .icon-container {
-  width: 10%;
-  max-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 27px;
   text-align: center;
   cursor: pointer;
+  color: white;
 }
 
 .name-container {
