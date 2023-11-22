@@ -156,6 +156,9 @@ function UserEditPage() {
       <button className="save-btn km-button" onClick={handleSave}>
         Mentés
       </button>
+      <button className="save-btn km-button-error" onClick={handleSave}>
+        Törlés
+      </button>
     </div>
   );
 }
