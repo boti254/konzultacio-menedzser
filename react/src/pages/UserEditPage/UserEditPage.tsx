@@ -4,6 +4,7 @@ import "./UserEditPage.css";
 import { useUser } from "../../hooks/useUser";
 import { useEffect, useState } from "react";
 import { User } from "../../interfaces/Interfaces";
+import axios from 'axios';
 
 function UserEditPage() {
   const { id } = useParams();
@@ -58,6 +59,21 @@ function UserEditPage() {
         `https://szoftarch.webgravir.hu/api/users/store/0`,
         true
       );
+    }
+  };
+
+  const handleDelete = async () => {
+    if (id !== "0") {
+      try {
+        await axios.delete(`https://szoftarch.webgravir.hu/api/users/store/${user?.id}`);
+        console.log('User deleted successfully');
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          console.error('Axios error:', error.message);
+        } else {
+          console.error('Unknown error:', error);
+        }
+      }
     }
   };
 
@@ -156,7 +172,7 @@ function UserEditPage() {
       <button className="save-btn km-button" onClick={handleSave}>
         Mentés
       </button>
-      <button className="save-btn km-button-error" onClick={handleSave}>
+      <button className="save-btn km-button-error" onClick={handleDelete}>
         Törlés
       </button>
     </div>
