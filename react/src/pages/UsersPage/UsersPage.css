@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: center;
   border-top: 1px solid var(--border-color);
+  gap: 5px;
 }
 
 .users-input-wrapper {
@@ -27,6 +28,9 @@
 
 .icon-container {
   width: 10%;
+  max-width: 50px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .name-container {
