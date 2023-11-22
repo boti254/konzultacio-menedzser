@@ -26,7 +26,10 @@
 }
 
 .icon-container {
-  width: 10%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-content: center;
 }
 
 .name-container {
