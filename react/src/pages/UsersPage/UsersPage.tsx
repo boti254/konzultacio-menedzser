@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UsersPage.css";
 import { useUsers } from "../../hooks/useUsers";
-import UserEditIcon from '../../assets/bars.svg';
-import UserIcon from '../../assets/user.svg';
-import PlusIcon from '../../assets/plus.svg';
+import UserEditIcon from "../../assets/bars.svg";
+import UserDeleteIcon from "../../assets/trash.svg";
+import UserIcon from "../../assets/user.svg";
+import PlusIcon from "../../assets/plus.svg";
 
 function UsersPage() {
   const { data, loading, fetchUsers, deleteUser } = useUsers();
@@ -68,7 +69,7 @@ function UsersPage() {
               <a
                 className="icon-container km-icon-button-error" onClick={() => handleDelete(user.id)}
               >
-                T
+                <img src={UserDeleteIcon} alt="User Edit Icon" />
               </a>
               <a className="icon-container km-icon-button-primary" href={`/user-edit/${user.id}`}>
               
