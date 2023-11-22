@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UsersPage.css";
 import { useUsers } from "../../hooks/useUsers";
+import UserEditIcon from '../../assets/bars.svg';
+import UserIcon from '../../assets/user.svg';
+import PlusIcon from '../../assets/plus.svg';
 
 function UsersPage() {
   const { data, loading, fetchUsers, deleteUser } = useUsers();
@@ -56,7 +59,9 @@ function UsersPage() {
         ? "Betöltés..."
         : data?.map((user) => (
             <div className="user-container" key={user.id}>
-              <div className="icon-container">ICON</div>
+              <div className="icon-container">
+              <img src={UserIcon} alt="User Icon" />
+              </div>
               <div className="name-container">
                 {user.name} - {user.neptun}
               </div>
@@ -65,11 +70,9 @@ function UsersPage() {
               >
                 T
               </a>
-              <a
-                className="icon-container km-icon-button-primary"
-                href={`/user-edit/${user.id}`}
-              >
-                M
+              <a className="icon-container km-icon-button-primary" href={`/user-edit/${user.id}`}>
+              
+                <img src={UserEditIcon} alt="User Edit Icon" />
               </a>
             </div>
           ))}
@@ -78,7 +81,7 @@ function UsersPage() {
           className="icon-container km-icon-button-primary"
           href={`/user-edit/0`}
         >
-          +
+          <img src={PlusIcon} alt="Plus Icon" />
         </a>
       </div>
     </div>
