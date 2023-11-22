@@ -8,7 +8,7 @@ import axios from 'axios';
 
 function UserEditPage() {
   const { id } = useParams();
-  const { fetchUser, user, updateUser, createUser } = useUser();
+  const { fetchUser, user, updateUser, createUser, deleteUser } = useUser();
 
   const [checkedState, setCheckedState] = useState<User>({
     id: NaN,
@@ -62,18 +62,9 @@ function UserEditPage() {
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (id !== "0") {
-      try {
-        await axios.delete(`https://szoftarch.webgravir.hu/api/users/store/${user?.id}`);
-        console.log('User deleted successfully');
-      } catch (error: unknown) {
-        if (axios.isAxiosError(error)) {
-          console.error('Axios error:', error.message);
-        } else {
-          console.error('Unknown error:', error);
-        }
-      }
+      deleteUser(`https://szoftarch.webgravir.hu/api/users/store/${user?.id}`);
     }
   };
 
