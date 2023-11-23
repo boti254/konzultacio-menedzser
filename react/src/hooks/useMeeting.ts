@@ -57,7 +57,8 @@ export function useMeeting() {
     url: string,
     date: string,
     location: string,
-    count: number
+    count: number,
+    id: number
   ) => {
     try {
       const response = await fetch(url, {
@@ -78,6 +79,9 @@ export function useMeeting() {
         alert("Sikeres mentes");
       }
       const result: Meeting = await response.json();
+      if (id === 0) {
+        navigate(`/appointment-teacher-edit/${result.id}`);
+      }
       setData(result);
     } catch {
       /* empty */

@@ -8,6 +8,7 @@ import { useApplications } from "../../hooks/useApplications";
 function AppointmentTeachertEditPage() {
   const { data, fetchMeetingById, updateMeeting, acceptApply, deleteApply } =
     useMeeting();
+
   const {
     data: meetings,
     loading: meetingsloading,
@@ -34,17 +35,21 @@ function AppointmentTeachertEditPage() {
       const temp = count + 1;
       setCount(temp);
     } else {
-      const temp2 = count - 1;
-      setCount(temp2);
+      if (count > 0) {
+        const temp2 = count - 1;
+        setCount(temp2);
+      }
     }
   };
 
   const handleUpdate = (date: string, location: string, count: number) => {
+    console.log(date);
     updateMeeting(
       `https://szoftarch.webgravir.hu/api/meetings/store/${id}`,
       date,
       location,
-      count
+      count,
+      Number(id)
     );
   };
 
@@ -191,7 +196,7 @@ function AppointmentTeachertEditPage() {
       <button
         className="save-btn km-button"
         onClick={() =>
-          handleUpdate(inputDate + " " + inputHour + ":00", inputPlace, count)
+          handleUpdate(inputDate + " " + inputHour, inputPlace, count)
         }
       >
         Mentés
