@@ -44,9 +44,9 @@ export function useUsers() {
         alert("Cannot delete user.");
       } else {
         alert("Felhasznalo torolve");
+        const updatedData = data?.filter((item) => item.id !== id);
+        setData(updatedData);
       }
-      const updatedData = data?.filter((item) => item.id !== id);
-      setData(updatedData);
     } catch {
       /* empty */
     } finally {

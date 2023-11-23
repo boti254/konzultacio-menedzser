@@ -91,6 +91,7 @@ function UserEditPage() {
           placeholder="Nev"
           value={checkedState?.name}
           onChange={handleChange}
+          autoComplete="off"
         />
       </div>
       <div className="user-input-wrapper">
@@ -105,6 +106,7 @@ function UserEditPage() {
           placeholder="Email"
           value={checkedState?.email}
           onChange={handleChange}
+          autoComplete="off"
         />
       </div>
       <div className="user-input-wrapper">
@@ -119,6 +121,7 @@ function UserEditPage() {
           placeholder="Password"
           value={checkedState?.password}
           onChange={handleChange}
+          autoComplete="off"
         />
       </div>
       <div className="user-input-wrapper">
@@ -133,6 +136,7 @@ function UserEditPage() {
           value={checkedState?.neptun}
           name="neptun"
           onChange={handleChange}
+          autoComplete="off"
         />
       </div>
       <div className="user-input-wrapper">

@@ -27,6 +27,7 @@ li:last-child {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   padding: 10px 0px;
   border-bottom: 1px solid var(--border-color);
 }
@@ -35,7 +36,4 @@ li:last-child {
   width: 250px;
   text-align: start;
   text-overflow: ellipsis;
-}
-
-.list-teacher-btn {
 }
