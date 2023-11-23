@@ -13,6 +13,7 @@ function UserEditPage() {
     id: NaN,
     name: "",
     email: "",
+    password: "",
     neptun: "",
     email_verified_at: "",
     created_at: "",
@@ -41,6 +42,7 @@ function UserEditPage() {
       updateUser(
         checkedState.name,
         checkedState.email,
+        checkedState.password,
         checkedState.neptun,
         checkedState.student,
         checkedState.teacher,
@@ -51,6 +53,7 @@ function UserEditPage() {
       createUser(
         checkedState.name,
         checkedState.email,
+        checkedState.password,
         checkedState.neptun,
         Boolean(checkedState.student),
         Boolean(checkedState.teacher),
@@ -101,6 +104,20 @@ function UserEditPage() {
           className="km-input"
           placeholder="Email"
           value={checkedState?.email}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="user-input-wrapper">
+        <label htmlFor="userPass" className="km-label">
+          Jelszó
+        </label>
+        <input
+          type="password"
+          id="userPass"
+          name="password"
+          className="km-input"
+          placeholder="Password"
+          value={checkedState?.password}
           onChange={handleChange}
         />
       </div>
