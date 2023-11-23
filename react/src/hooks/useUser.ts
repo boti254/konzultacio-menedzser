@@ -19,8 +19,11 @@ export function useUser() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200) {
-        navigate("/");
+        alert("Sikertelen betöltés")
       }
       const result: User = await response.json();
       setUser(result);
@@ -58,10 +61,13 @@ export function useUser() {
           admin: admin,
         }),
       });
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200 && response.status !== 201) {
-        navigate("/");
+        alert("Sikertelen mentés")
       } else {
-        alert("Sikeres mentes");
+        alert("Sikeres mentés");
       }
       const result: User = await response.json();
       setUser(result);
@@ -100,10 +106,13 @@ export function useUser() {
           admin: admin,
         }),
       });
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200 && response.status !== 201) {
-        navigate("/");
+        alert("Sikertelen művelet")
       } else {
-        alert("Felhasznalo hozzaadva");
+        alert("Felhasznaló hozzáadva");
       }
       const result: User = await response.json();
       setUser(result);

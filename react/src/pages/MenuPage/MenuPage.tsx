@@ -1,11 +1,18 @@
 import { useEffect } from "react";
 import { useUser } from "../../hooks/useUser";
 import "./MenuPage.css";
+import { useNavigate } from "react-router-dom";
 //import { useParams } from "react-router-dom";
 
 function MenuPage() {
   //const { name } = useParams();
   const { fetchUser, user } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate('/');
+  }
 
   useEffect(() => {
     fetchUser(`https://szoftarch.webgravir.hu/api/users/me`);
@@ -72,9 +79,9 @@ function MenuPage() {
       <a className="km-button" href={`/user-edit/${user?.id}`}>
         Saját adatok
       </a>
-      <a className="km-button-error" href="/">
+      <button className="km-button-error" onClick={handleLogout}>
         Kijelentkezés
-      </a>
+      </button>
     </div>
   );
 }

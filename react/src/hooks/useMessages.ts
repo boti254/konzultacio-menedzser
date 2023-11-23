@@ -19,8 +19,11 @@ export function useMessages() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+     }
       if (response.status !== 200) {
-        navigate("/");
+        alert("Sikertelen betöltés")
       }
       const result: Message[] = await response.json();
       setData(result);
@@ -43,8 +46,11 @@ export function useMessages() {
           message: message,
         }),
       });
+      if (response.status === 401) {
+        navigate('/');
+     }
       if (response.status !== 200 && response.status !== 201) {
-        navigate("/");
+        alert("Sikertelen betöltés")
       }
       const result: Message = await response.json();
       const temp = data !== undefined ? [...data, result] : [];

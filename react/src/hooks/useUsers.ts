@@ -19,8 +19,11 @@ export function useUsers() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+     }
       if (response.status !== 200) {
-        navigate("/");
+        alert("Sikertelen betöltés")
       }
       const result: User[] = await response.json();
       setData(result);
@@ -40,6 +43,9 @@ export function useUsers() {
           "Content-Type": "application/json",
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200) {
         alert("Cannot delete user.");
       } else {

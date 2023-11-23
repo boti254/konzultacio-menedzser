@@ -19,8 +19,11 @@ export function useTodos() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200) {
-        navigate("/");
+        alert("Sikertelen betöltés")
       }
       const result: TodoTask[] = await response.json();
       setData(result);
@@ -40,10 +43,13 @@ export function useTodos() {
           "Content-Type": "application/json",
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200) {
-        navigate("/");
+        alert("Sikertelen törlés")
       } else {
-        alert("Feladat torolve");
+        alert("Feladat törölve");
       }
       const updatedData = data?.filter((item) => item.id !== id);
       setData(updatedData);
@@ -75,10 +81,13 @@ export function useTodos() {
           done: done,
         }),
       });
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200 && response.status !== 201) {
-        navigate("/");
+        alert("Sikertelen mentés")
       } else {
-        alert("Sikeres mentes");
+        alert("Sikeres mentés");
       }
       const result: TodoTask = await response.json();
       const updatedTodos = data?.map((todo) => {
@@ -120,8 +129,11 @@ export function useTodos() {
           done: done,
         }),
       });
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200 && response.status !== 201) {
-        navigate("/");
+        alert("Sikertelen művelet")
       } else {
         alert("Feladat elkeszitve");
       }

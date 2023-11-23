@@ -19,8 +19,11 @@ export function useMeetings() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+     }
       if (response.status !== 200) {
-        navigate("/");
+        alert("Sikertelen betöltés")
       }
       const result: MeetingStudent[] = await response.json();
       setData(result);

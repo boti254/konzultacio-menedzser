@@ -19,8 +19,11 @@ export function useMeeting() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+     }
       if (response.status !== 200) {
-        navigate("/");
+        alert("Sikertelen betöltés")
       }
       const result: Meeting = await response.json();
       setData(result);
@@ -74,8 +77,11 @@ export function useMeeting() {
           count: count,
         }),
       });
+      if (response.status === 401) {
+        navigate('/');
+     }
       if (response.status !== 200 && response.status !== 201) {
-        navigate("/");
+        alert("Sikertelen mentés")
       } else {
         alert("Sikeres mentes");
       }
@@ -99,7 +105,9 @@ export function useMeeting() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
-
+      if (response.status === 401) {
+        navigate('/');
+     }
       if (response.status !== 200) {
         const { message }: { message: string } = await response.json();
         alert(message);

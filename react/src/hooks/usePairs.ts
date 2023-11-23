@@ -19,8 +19,11 @@ export function usePairs() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
+      if (response.status === 401) {
+        navigate('/');
+     }
       if (response.status !== 200) {
-        navigate("/");
+        alert("Sikertelen betöltés")
       }
       const result: UserPair[] = await response.json();
       setData(result);
@@ -39,7 +42,9 @@ export function usePairs() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
-
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200 && response.status !== 201) {
         const { message }: { message: string } = await response.json();
         alert(message);
@@ -61,7 +66,9 @@ export function usePairs() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
-
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200) {
         const { message }: { message: string } = await response.json();
         alert(message);
@@ -94,7 +101,9 @@ export function usePairs() {
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
-
+      if (response.status === 401) {
+        navigate('/');
+      }
       if (response.status !== 200) {
         const { message }: { message: string } = await response.json();
         alert(message);
