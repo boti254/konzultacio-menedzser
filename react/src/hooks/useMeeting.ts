@@ -57,7 +57,8 @@ export function useMeeting() {
     url: string,
     date: string,
     location: string,
-    count: number
+    count: number,
+    id: number
   ) => {
     try {
       const response = await fetch(url, {
@@ -74,8 +75,13 @@ export function useMeeting() {
       });
       if (response.status !== 200 && response.status !== 201) {
         navigate("/");
+      } else {
+        alert("Sikeres mentes");
       }
       const result: Meeting = await response.json();
+      if (id === 0) {
+        navigate(`/appointment-teacher-edit/${result.id}`);
+      }
       setData(result);
     } catch {
       /* empty */
@@ -120,6 +126,8 @@ export function useMeeting() {
       if (response.status !== 200) {
         const { message }: { message: string } = await response.json();
         alert(message);
+      } else {
+        alert("Sikeres torles");
       }
       //const result: Meeting = await response.json();
       //setData(result);

@@ -43,6 +43,8 @@ export function usePairs() {
       if (response.status !== 200 && response.status !== 201) {
         const { message }: { message: string } = await response.json();
         alert(message);
+      } else {
+        alert("Sikeres jelentkezes");
       }
     } catch {
       setError(null);
@@ -63,6 +65,8 @@ export function usePairs() {
       if (response.status !== 200) {
         const { message }: { message: string } = await response.json();
         alert(message);
+      } else {
+        alert("Elfogadva");
       }
       const result: Pair = await response.json();
       const updatedPairs = data?.map((userPair) => {
@@ -94,6 +98,8 @@ export function usePairs() {
       if (response.status !== 200) {
         const { message }: { message: string } = await response.json();
         alert(message);
+      } else {
+        alert("Diak torolve");
       }
       const result: { message: string; pair_id: number } =
         await response.json();

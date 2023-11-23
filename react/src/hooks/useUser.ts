@@ -34,6 +34,7 @@ export function useUser() {
   const updateUser = async (
     name: string,
     email: string,
+    password: string,
     neptun: string,
     student: number,
     teacher: number,
@@ -50,6 +51,7 @@ export function useUser() {
         body: JSON.stringify({
           name: name,
           email: email,
+          password: password,
           neptun: neptun,
           student: student,
           teacher: teacher,
@@ -58,6 +60,8 @@ export function useUser() {
       });
       if (response.status !== 200 && response.status !== 201) {
         navigate("/");
+      } else {
+        alert("Sikeres mentes");
       }
       const result: User = await response.json();
       setUser(result);
@@ -71,6 +75,7 @@ export function useUser() {
   const createUser = async (
     name: string,
     email: string,
+    password: string,
     neptun: string,
     student: boolean,
     teacher: boolean,
@@ -88,15 +93,17 @@ export function useUser() {
         body: JSON.stringify({
           name: name,
           email: email,
+          password: password,
           neptun: neptun,
           student: student,
           teacher: teacher,
           admin: admin,
-          password: "b",
         }),
       });
       if (response.status !== 200 && response.status !== 201) {
         navigate("/");
+      } else {
+        alert("Felhasznalo hozzaadva");
       }
       const result: User = await response.json();
       setUser(result);

@@ -71,12 +71,16 @@ class UserController extends Controller
             $req_array = [
                 'name' => $user->name,
                 'email' => $request->email,
-                //'password' => Hash::make($request->password),
                 'neptun' => $user->neptun,
                 'student' => $user->student,
                 'teacher' => $user->teacher,
                 'admin' => $user->admin,
             ];
+
+            if ($request->password != "") {
+                $req_array["password"] = Hash::make($request->password);
+            }
+
             $user->update($req_array);
             return $user;
         }
@@ -108,12 +112,16 @@ class UserController extends Controller
                 $req_array = [
                     'name' => $request->name,
                     'email' => $request->email,
-                    //'password' => Hash::make($request->password),
                     'neptun' => $request->neptun,
                     'student' => $request->student,
                     'teacher' => $request->teacher,
                     'admin' => $request->admin,
                 ];
+
+                if ($request->password != "") {
+                    $req_array["password"] = Hash::make($request->password);
+                }
+
                 if ($request->id != $request->uid){
                     $user_to_mod = User::find($request->id);
                     if ($user_to_mod){

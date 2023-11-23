@@ -42,6 +42,8 @@ export function useTodos() {
       });
       if (response.status !== 200) {
         navigate("/");
+      } else {
+        alert("Feladat torolve");
       }
       const updatedData = data?.filter((item) => item.id !== id);
       setData(updatedData);
@@ -75,6 +77,8 @@ export function useTodos() {
       });
       if (response.status !== 200 && response.status !== 201) {
         navigate("/");
+      } else {
+        alert("Sikeres mentes");
       }
       const result: TodoTask = await response.json();
       const updatedTodos = data?.map((todo) => {
@@ -118,6 +122,8 @@ export function useTodos() {
       });
       if (response.status !== 200 && response.status !== 201) {
         navigate("/");
+      } else {
+        alert("Feladat elkeszitve");
       }
       const result: TodoTask = await response.json();
       const newTodo = {

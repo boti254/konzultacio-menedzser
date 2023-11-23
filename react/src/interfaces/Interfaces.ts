@@ -17,6 +17,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  password: string;
   neptun: string;
   email_verified_at: string | null;
   created_at: string;
