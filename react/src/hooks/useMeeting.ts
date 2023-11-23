@@ -31,7 +31,7 @@ export function useMeeting() {
     }
   };
 
-  const applyToMeeting = async (url: string) => {
+  const applyToMeeting = async (url: string, f: () => void) => {
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -45,6 +45,7 @@ export function useMeeting() {
         alert(message);
       } else {
         alert("Sikeres jelentkezes");
+        f();
       }
     } catch {
       setError(null);

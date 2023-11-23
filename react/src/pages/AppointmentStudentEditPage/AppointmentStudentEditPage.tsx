@@ -44,6 +44,7 @@ function AppointmentStudentEditPage() {
     setInputPlace(tempPlace);
   }, [data, meetings]);
 
+
   useEffect(() => {
     fetchMeetingById(
       `https://szoftarch.webgravir.hu/api/meetings/meeting/${id}`
@@ -54,10 +55,12 @@ function AppointmentStudentEditPage() {
   }, []);
   const handleApply = () => {
     applyToMeeting(
-      `https://szoftarch.webgravir.hu/api/applications/apply-to/${id}`
-    );
-    fetchMeetings(
-      `https://szoftarch.webgravir.hu/api/applications/meeting/${id}`
+      `https://szoftarch.webgravir.hu/api/applications/apply-to/${id}`,
+      () => {
+        fetchMeetings(
+          `https://szoftarch.webgravir.hu/api/applications/meeting/${id}`
+        )
+      }
     );
   };
   return (
