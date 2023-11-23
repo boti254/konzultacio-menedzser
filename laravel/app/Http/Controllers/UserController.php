@@ -92,10 +92,11 @@ class UserController extends Controller
 
     public function store(Request $request) {
         $user = User::find($request->uid);
+        if($request->id == $request->uid){
+            return UserController::updateOwnProfile($request);
+        }
         if ($user && $user->admin) {
             $new_user = null;
-
-
             if ($request->id == 0) {
                 $req_array = [
                     'name' => $request->name,
