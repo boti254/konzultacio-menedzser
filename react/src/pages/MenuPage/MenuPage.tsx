@@ -69,6 +69,9 @@ function MenuPage() {
       ) : (
         ""
       )}
+      <a className="km-button" href={`/user-edit/${user?.id}`}>
+        Saját adatok
+      </a>
       <a className="km-button-error" href="/">
         Kijelentkezés
       </a>
