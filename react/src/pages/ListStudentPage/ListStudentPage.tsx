@@ -3,6 +3,8 @@ import "./ListStudentPage.css";
 import BackButton from "../../components/BackButton/BackButton";
 import { usePairs } from "../../hooks/usePairs";
 import { UserPair } from "../../interfaces/Interfaces";
+import DeleteIcon from "../../assets/trash.svg";
+import PlusIcon from "../../assets/plus.svg";
 
 function ListStudentPage() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -54,27 +56,27 @@ function ListStudentPage() {
       </div>
       <div className="student-list">
         <h2>Hallgatók</h2>
-        <ul>
+        <ul className="list-student-wrapper">
           {loading
             ? "Betöltés..."
             : filteredStudents?.map((student) => (
-                <li key={student.user.id}>
+                <li key={student.user.id} className="list-student-container">
                   <span>{student.user.name}</span>
                   {student.pair.accepted ? (
                     ""
                   ) : (
                     <button
-                      className="km-icon-button-primary"
+                      className="km-icon-button-primary icon-container"
                       onClick={() => handleAccept(student.user.id)}
                     >
-                      +
+                      <img src={PlusIcon} alt="" />
                     </button>
                   )}
                   <button
-                    className="km-icon-button-error"
+                    className="km-icon-button-error icon-container"
                     onClick={() => handleDelete(student.user.id)}
                   >
-                    -
+                    <img src={DeleteIcon} alt="" />
                   </button>
                 </li>
               ))}

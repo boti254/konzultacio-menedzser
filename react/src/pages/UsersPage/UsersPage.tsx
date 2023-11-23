@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import "./UsersPage.css";
 import { useUsers } from "../../hooks/useUsers";
-import UserEditIcon from "../../assets/bars.svg";
+import UserEditIcon from "../../assets/edit.svg";
 import UserDeleteIcon from "../../assets/trash.svg";
 import UserIcon from "../../assets/user.svg";
 import PlusIcon from "../../assets/plus.svg";

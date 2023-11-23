@@ -3,6 +3,8 @@ import BackButton from "../../components/BackButton/BackButton";
 import { useMeetings } from "../../hooks/useMeetings";
 import "./AppointmentEditListPage.css";
 import { prettifyDateWithHour } from "../../helpers/helper";
+import EditIcon from "../../assets/edit.svg";
+import PlusIcon from "../../assets/plus.svg";
 
 function AppointmentEditListPage() {
   const { data, loading, fetchMeetings } = useMeetings();
@@ -33,7 +35,7 @@ function AppointmentEditListPage() {
               className="icon-container km-icon-button-primary"
               href={`/appointment-teacher-edit/${appointment.id}`}
             >
-              M
+              <img src={EditIcon} alt="" />
             </a>
           </div>
         ))
@@ -43,7 +45,7 @@ function AppointmentEditListPage() {
           className="icon-container km-icon-button-primary"
           href={`/appointment-teacher-edit/0`}
         >
-          +
+          <img src={PlusIcon} alt="" />
         </a>
       </div>
     </div>

@@ -9,25 +9,33 @@
   text-align: center;
 }
 
-ul {
+li:last-child {
+  border-bottom: none;
+}
+
+.list-teacher-wrapper {
+  width: 320px;
   list-style-type: none;
   padding: 0;
   max-height: 300px;
-  overflow-y: auto;
   border: 1px solid var(--border-color);
   border-radius: 5px;
 }
 
-li {
-  padding: 10px;
-  border-bottom: 1px solid var(--border-color);
+.list-teacher-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
+  padding: 10px 0px;
+  border-bottom: 1px solid var(--border-color);
 }
 
-li:last-child {
-  border-bottom: none;
+.list-teacher-name {
+  width: 250px;
+  text-align: start;
+  text-overflow: ellipsis;
+}
+
+.list-teacher-btn {
 }

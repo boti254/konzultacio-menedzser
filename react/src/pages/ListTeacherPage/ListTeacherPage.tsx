@@ -4,6 +4,7 @@ import BackButton from "../../components/BackButton/BackButton";
 import { usePairs } from "../../hooks/usePairs";
 import { useUsers } from "../../hooks/useUsers";
 import { User } from "../../interfaces/Interfaces";
+import PlusIcon from "../../assets/plus.svg";
 
 function ListTeacherPage() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -51,19 +52,19 @@ function ListTeacherPage() {
       </div>
       <div className="consultant-list">
         <h2>Konzulensek</h2>
-        <ul>
+        <ul className="list-teacher-wrapper">
           {loading
             ? "Betöltés..."
             : filteredConsultants?.map((consultant) => (
-                <li key={consultant.id}>
-                  <span>
+                <li key={consultant.id} className="list-teacher-container">
+                  <span className="list-teacher-name">
                     {consultant.name} - {consultant.neptun}
                   </span>
                   <button
-                    className="km-icon-button-primary"
+                    className="km-icon-button-primary icon-container list-teacher-btn"
                     onClick={() => handleApply(consultant.id)}
                   >
-                    J
+                    <img src={PlusIcon} alt="" />
                   </button>
                 </li>
               ))}
