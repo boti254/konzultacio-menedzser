@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   height: 90vh;
+  padding-top: 60px;
 }
 
 .chat-input-container {
