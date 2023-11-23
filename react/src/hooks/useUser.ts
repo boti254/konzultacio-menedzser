@@ -58,6 +58,8 @@ export function useUser() {
       });
       if (response.status !== 200 && response.status !== 201) {
         navigate("/");
+      } else {
+        alert("Sikeres mentes");
       }
       const result: User = await response.json();
       setUser(result);
@@ -97,6 +99,8 @@ export function useUser() {
       });
       if (response.status !== 200 && response.status !== 201) {
         navigate("/");
+      } else {
+        alert("Felhasznalo hozzaadva");
       }
       const result: User = await response.json();
       setUser(result);

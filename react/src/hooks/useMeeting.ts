@@ -74,6 +74,8 @@ export function useMeeting() {
       });
       if (response.status !== 200 && response.status !== 201) {
         navigate("/");
+      } else {
+        alert("Sikeres mentes");
       }
       const result: Meeting = await response.json();
       setData(result);
@@ -120,6 +122,8 @@ export function useMeeting() {
       if (response.status !== 200) {
         const { message }: { message: string } = await response.json();
         alert(message);
+      } else {
+        alert("Sikeres torles");
       }
       //const result: Meeting = await response.json();
       //setData(result);
